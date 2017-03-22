@@ -1,0 +1,12 @@
+{
+  "name": "SquadBot",
+  "version": "0.0.0",
+  "description": "discord app bot",
+  "main": "index.js",
+  "repository": "git@github.com:davidyorr/SquadBot.git",
+  "author": "David Orr <davidyorr@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.0.0"
+  }
+}
