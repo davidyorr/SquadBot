@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 const bot = new Discord.Client();
 
-const Auth = require('./auth.json');
+const Auth = require('../auth.json');
 const token = Auth.token;
 
 parseMessage = (message) => {
