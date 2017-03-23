@@ -7,9 +7,11 @@
   "author": "David Orr <davidyorr@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "lint": "eslint --ext .js src/"
   },
   "dependencies": {
-    "discord.js": "^11.0.0"
+    "discord.js": "^11.0.0",
+    "eslint": "^3.18.0"
   }
 }
