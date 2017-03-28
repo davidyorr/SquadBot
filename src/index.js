@@ -6,7 +6,7 @@ const bot = new Discord.Client();
 const Auth = DEV ? require('../auth.dev.json') : require('../auth.json');
 const token = Auth.token;
 
-const SquadBot = require('./squadbot.js');
+const SquadBot = require('./squadbot.js')(bot);
 
 bot.on('ready', () => {
   console.log('I am ready!');

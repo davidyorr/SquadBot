@@ -41,4 +41,9 @@ const SquadBot = {
   executeCommand
 }
 
-module.exports = SquadBot;
+var bot;
+
+module.exports = (discordBot) => {
+  bot = discordBot;
+  return SquadBot;
+};
