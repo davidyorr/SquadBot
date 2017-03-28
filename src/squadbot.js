@@ -1,13 +1,7 @@
 const Commands = {
   'ping': {
-    'description': 'responds with pong',
-    'execute': (message) => {
-      message.channel.sendMessage('pong');
-    }
-  },
-  'pong': {
-    'description': 'responds with pong',
-    'execute': (message) => {
+    description: 'responds with pong',
+    execute: (message) => {
       message.channel.sendMessage('pong');
     }
   }
