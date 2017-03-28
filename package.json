@@ -9,6 +9,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "export DEV=true; node src/index.js",
+    "test": "mocha src/__tests__",
     "lint": "eslint --ext .js src/"
   },
   "dependencies": {
