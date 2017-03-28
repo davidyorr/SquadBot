@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node src/index.js",
+    "dev": "export DEV=true; node src/index.js",
     "lint": "eslint --ext .js src/"
   },
   "dependencies": {
