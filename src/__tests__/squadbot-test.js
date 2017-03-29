@@ -17,12 +17,13 @@ describe('SquadBot', () => {
         expect(command.description, message).to.be.string();
       });
     });
-    it('each command should contain an execute function', () => {
+    it('each command should contain an execute function with 1 parameter', () => {
       Object.keys(SquadBot.Commands).forEach( commandName => {
         const command = SquadBot.Commands[commandName];
         const message = `SquadBot.Commands.${commandName}`;
         expect(command, message).to.have.property('execute');
         expect(command.execute, message).to.be.function();
+        expect(command.execute, message).to.have.lengthOf(1);
       });
     });
   });
