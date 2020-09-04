@@ -2,7 +2,7 @@ const Commands = {
   'ping': {
     description: 'responds with pong',
     execute: (message) => {
-      message.channel.sendMessage('pong');
+      message.channel.send('pong');
     }
   }
 }
@@ -12,7 +12,7 @@ const parseMessage = (message) => {
     return;
   }
 
-  if (message.isMentioned(bot.user)) {
+  if (message.mentions.has(bot.user)) {
     let messageSplit = message.content.split(' ');
     if (messageSplit.length > 1) {
       let command = messageSplit[1];
@@ -25,7 +25,7 @@ const executeCommand = (command, message) => {
   if (Commands[command]) {
     Commands[command].execute(message);
   } else {
-    message.channel.sendMessage('sorry');
+    message.channel.send('sorry');
   }
 }
 

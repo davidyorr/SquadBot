@@ -3,8 +3,7 @@ const DEV = process.env.DEV;
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-const Auth = DEV ? require('../auth.dev.json') : require('../auth.json');
-const token = Auth.token;
+const token = DEV ? require('../token.dev.js') : require('../token.js');
 
 const SquadBot = require('./squadbot.js')(bot);
 
