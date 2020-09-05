@@ -1,19 +1,21 @@
-const DEV = process.env.DEV;
-
 import { Client } from "discord.js";
+import { SquadBot } from "./squadbot";
 
-const bot = new Client();
+const DEV = process.env.DEV;
+const client = new Client();
 
 const token = DEV ? require("../token.dev.js") : require("../token.js");
 
-const SquadBot = require("./squadbot.js")(bot);
-
-bot.on("ready", () => {
+client.on("ready", () => {
   console.log("I am ready!");
 });
 
-bot.on("message", (message) => {
-  SquadBot.parseMessage(message);
+client.on("messageReactionAdd", (reaction, user) => {
+  SquadBot.handleMessageReactionAdd(reaction, user);
 });
 
-bot.login(token);
+client.on("message", (message) => {
+  SquadBot.handleMessage(message, client);
+});
+
+client.login(token);

@@ -1,6 +1,12 @@
-import { Client, Message } from "discord.js";
+import {
+  Client,
+  Message,
+  MessageReaction,
+  PartialUser,
+  User,
+} from "discord.js";
 
-const Commands = {
+const commands = {
   ping: {
     description: "responds with pong",
     execute: (message: Message) => {
@@ -9,37 +15,52 @@ const Commands = {
   },
 };
 
-const parseMessage = (message: Message) => {
-  if (message.author.id === bot.user.id) {
+type Command = keyof typeof commands;
+
+const handleMessage = (message: Message, client: Client) => {
+  if (!client.user) {
+    return;
+  }
+  if (message.author.id === client.user.id) {
     return;
   }
 
-  if (message.mentions.has(bot.user)) {
+  if (message.mentions.has(client.user)) {
     let messageSplit = message.content.split(" ");
     if (messageSplit.length > 1) {
-      let command = messageSplit[1] as keyof typeof Commands;
+      let command = messageSplit[1] as Command;
       executeCommand(command, message);
     }
   }
+
+  if (message.content === "!react") {
+    message.react("😄");
+  }
 };
 
-const executeCommand = (command: keyof typeof Commands, message: Message) => {
-  if (Commands[command]) {
-    Commands[command].execute(message);
-  } else {
-    message.channel.send("sorry");
+const handleMessageReactionAdd = (
+  reaction: MessageReaction,
+  _: User | PartialUser
+) => {
+  const mirrorReaction = (reaction: MessageReaction) => {
+    // for custom emojis you must use the id (and actual emojis don't have an id)
+    reaction.message.react(reaction.emoji.id ?? reaction.emoji.name);
+  };
+
+  if (["kiwicat", "catcow", "😩"].includes(reaction.emoji.name)) {
+    mirrorReaction(reaction);
+  }
+};
+
+const executeCommand = (command: Command, message: Message) => {
+  if (commands[command]) {
+    commands[command].execute(message);
   }
 };
 
 const SquadBot = {
-  Commands,
-  parseMessage,
-  executeCommand,
+  handleMessage,
+  handleMessageReactionAdd,
 };
 
-var bot: any;
-
-export = (discordBot: Client) => {
-  bot = discordBot;
-  return SquadBot;
-};
+export { SquadBot };
