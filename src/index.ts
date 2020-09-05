@@ -1,7 +1,8 @@
 const DEV = process.env.DEV;
 
-const Discord = require('discord.js');
-const bot = new Discord.Client();
+import { Client } from "discord.js";
+
+const bot = new Client();
 
 const token = DEV ? require('../token.dev.js') : require('../token.js');
 
