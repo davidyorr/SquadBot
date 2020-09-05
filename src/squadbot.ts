@@ -32,10 +32,6 @@ const handleMessage = (message: Message, client: Client) => {
       executeCommand(command, message);
     }
   }
-
-  if (message.content === "!react") {
-    message.react("😄");
-  }
 };
 
 const handleMessageReactionAdd = (

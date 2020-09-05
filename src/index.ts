@@ -4,7 +4,7 @@ import { SquadBot } from "./squadbot";
 const DEV = process.env.DEV;
 const client = new Client();
 
-const token = DEV ? require("../token.dev.js") : require("../token.js");
+const token = DEV ? require("../token.dev.js") : process.env.BOT_TOKEN;
 
 client.on("ready", () => {
   console.log("I am ready!");
