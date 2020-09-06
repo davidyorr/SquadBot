@@ -1,10 +1,4 @@
-import {
-  Client,
-  Message,
-  MessageReaction,
-  PartialUser,
-  User,
-} from "discord.js";
+import { Message, MessageReaction, PartialUser, User } from "discord.js";
 
 const commands = {
   ping: {
@@ -17,7 +11,9 @@ const commands = {
 
 type Command = keyof typeof commands;
 
-const handleMessage = (message: Message, client: Client) => {
+const handleMessage = (message: Message) => {
+  const client = message.client;
+
   if (!client.user) {
     return;
   }
@@ -34,6 +30,8 @@ const handleMessage = (message: Message, client: Client) => {
   }
 };
 
+const reactionsToMirror: string[] = ["kiwicat", "catcow", "😩"];
+
 const handleMessageReactionAdd = (
   reaction: MessageReaction,
   _: User | PartialUser
@@ -43,8 +41,22 @@ const handleMessageReactionAdd = (
     reaction.message.react(reaction.emoji.id ?? reaction.emoji.name);
   };
 
-  if (["kiwicat", "catcow", "😩"].includes(reaction.emoji.name)) {
+  if (reactionsToMirror.includes(reaction.emoji.name)) {
     mirrorReaction(reaction);
+  }
+};
+
+const handleMessageReactionRemove = (
+  reaction: MessageReaction,
+  _: User | PartialUser
+) => {
+  if (reactionsToMirror.includes(reaction.emoji.name)) {
+    // if there's one reaction left and it's SquadBot, then remove it
+    if (reaction.count === 1 && reaction.me) {
+      reaction.message.reactions.cache
+        .get(reaction.emoji.id ?? reaction.emoji.name)
+        ?.remove();
+    }
   }
 };
 
@@ -57,6 +69,7 @@ const executeCommand = (command: Command, message: Message) => {
 const SquadBot = {
   handleMessage,
   handleMessageReactionAdd,
+  handleMessageReactionRemove,
 };
 
 export { SquadBot };

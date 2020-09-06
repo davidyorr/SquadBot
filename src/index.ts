@@ -10,12 +10,10 @@ client.on("ready", () => {
   console.log("I am ready!");
 });
 
-client.on("messageReactionAdd", (reaction, user) => {
-  SquadBot.handleMessageReactionAdd(reaction, user);
-});
+client.on("message", SquadBot.handleMessage);
 
-client.on("message", (message) => {
-  SquadBot.handleMessage(message, client);
-});
+client.on("messageReactionAdd", SquadBot.handleMessageReactionAdd);
+
+client.on("messageReactionRemove", SquadBot.handleMessageReactionRemove);
 
 client.login(token);
