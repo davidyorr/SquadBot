@@ -1,13 +1,9 @@
 {
   "parserOptions": {
-    "ecmaVersion": 6
+    "ecmaVersion": 2019
   },
   "env": {
     "node": true
   },
-  "extends": "eslint:recommended",
-  "rules": {
-    "indent": ["error", 2, { "SwitchCase": 1 }],
-    "no-console": "off"
-  }
+  "extends": "eslint:recommended"
 }

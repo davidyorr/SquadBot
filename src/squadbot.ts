@@ -36,6 +36,25 @@ const handleMessage = (message: Message) => {
     reactToMessageWithSameEmoji("catcow");
   }
 
+  // echo a message if two different users have posted identical messages back to back
+  const previousTwoMessages = message.channel.messages.cache.last(2);
+  if (previousTwoMessages.length === 2) {
+    const messageA = previousTwoMessages[0];
+    const messageB = previousTwoMessages[1];
+    // using .bot is not exactly what we want (we want to check if it's SquadBot, not any bot)
+    const value =
+      messageA.content === messageB.content &&
+      messageA.author.id !== messageB.author.id &&
+      !messageA.author.bot &&
+      !messageB.author.bot
+        ? messageA.content
+        : "";
+
+    if (value !== "") {
+      message.channel.send(value);
+    }
+  }
+
   if (message.mentions.has(client.user)) {
     let messageSplit = message.content.split(" ");
     if (messageSplit.length > 1) {
