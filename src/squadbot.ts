@@ -21,6 +21,21 @@ const handleMessage = (message: Message) => {
     return;
   }
 
+  const reactToMessageWithSameEmoji = (name: String) => {
+    const id = client.emojis.cache.find((emoji) => emoji.name === name);
+    if (id) {
+      message.react(id);
+    }
+  };
+
+  if (message.content.includes(":kiwicat:")) {
+    reactToMessageWithSameEmoji("kiwicat");
+  }
+
+  if (message.content.includes(":catcow:")) {
+    reactToMessageWithSameEmoji("catcow");
+  }
+
   if (message.mentions.has(client.user)) {
     let messageSplit = message.content.split(" ");
     if (messageSplit.length > 1) {
