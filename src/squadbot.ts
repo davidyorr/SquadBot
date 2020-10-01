@@ -1,4 +1,6 @@
 import { Message, MessageReaction, PartialUser, User } from "discord.js";
+import { createCanvas } from "canvas";
+import { LeagueCharts } from "league-charts";
 
 const commands = {
   ping: {
@@ -11,6 +13,8 @@ const commands = {
 
 type Command = keyof typeof commands;
 
+const charts = new LeagueCharts(process.env.RIOT_TOKEN || "");
+
 const handleMessage = (message: Message) => {
   const client = message.client;
 
@@ -19,6 +23,62 @@ const handleMessage = (message: Message) => {
   }
   if (message.author.id === client.user.id) {
     return;
+  }
+
+  if (message.content.startsWith("!champdmg")) {
+    const split = message.content.split(" ");
+    if (split.length === 1) {
+      message.channel.send('missing summoner name: "!champdmg SummonerName"');
+      return;
+    }
+
+    const summonerName = message.content
+      .substring("!champdmg".length + 1)
+      .trim();
+
+    const canvas = createCanvas(600, 500);
+
+    charts
+      .championDamage(canvas.getContext("2d"), summonerName, {
+        responsive: false,
+        animation: false as any,
+      })
+      .then(() => {
+        message.channel.send({
+          files: [canvas.createPNGStream()],
+        });
+      })
+      .catch((error) => {
+        console.log("error creating chart", error);
+        message.channel.send("error creating chart");
+      });
+  }
+
+  if (message.content.startsWith("!gold")) {
+    const split = message.content.split(" ");
+    if (split.length === 1) {
+      message.channel.send('missing summoner name: "!gold SummonerName"');
+      return;
+    }
+
+    const summonerName = message.content.substring("!gold".length + 1).trim();
+
+    const canvas = createCanvas(800, 400);
+
+    charts
+      .teamGoldAdvantage(canvas.getContext("2d"), summonerName, {
+        responsive: false,
+        animation: false as any,
+      })
+      .then(() => {
+        message.channel.send({
+          files: [canvas.createPNGStream()],
+        });
+      })
+      .catch((error) => {
+        console.log("error creating chart", error);
+        message.channel.send("error creating chart");
+      });
   }
 
   const reactToMessageWithSameEmoji = (name: String) => {
