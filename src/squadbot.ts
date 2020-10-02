@@ -39,14 +39,20 @@ const handleMessage = (message: Message) => {
     const canvas = createCanvas(600, 500);
 
     charts
-      .championDamage(canvas.getContext("2d"), summonerName, {
-        responsive: false,
-        animation: false as any,
-      })
-      .then(() => {
-        message.channel.send({
-          files: [canvas.createPNGStream()],
-        });
+      .championDamage({
+        chartContext: canvas.getContext("2d"),
+        summonerName,
+        chartOptions: {
+          responsive: false,
+          animation: {
+            duration: 0,
+          },
+        },
+        afterRender: () => {
+          message.channel.send({
+            files: [canvas.createPNGStream()],
+          });
+        },
       })
       .catch((error) => {
         console.log("error creating chart", error);
@@ -66,14 +72,20 @@ const handleMessage = (message: Message) => {
     const canvas = createCanvas(800, 400);
 
     charts
-      .teamGoldAdvantage(canvas.getContext("2d"), summonerName, {
-        responsive: false,
-        animation: false as any,
-      })
-      .then(() => {
-        message.channel.send({
-          files: [canvas.createPNGStream()],
-        });
+      .teamGoldAdvantage({
+        chartContext: canvas.getContext("2d"),
+        summonerName,
+        chartOptions: {
+          responsive: false,
+          animation: {
+            duration: 0,
+          },
+        },
+        afterRender: () => {
+          message.channel.send({
+            files: [canvas.createPNGStream()],
+          });
+        },
       })
       .catch((error) => {
         console.log("error creating chart", error);
