@@ -37,8 +37,9 @@ const handleMessage = async (message: Message) => {
     const canvas = createCanvas(600, 500);
 
     charts
-      .championDamage({
+      .barChart({
         chartContext: canvas.getContext("2d"),
+        chartStat: "totalDamageDealtToChampions",
         summonerName,
         chartOptions: {
           responsive: false,
@@ -70,8 +71,9 @@ const handleMessage = async (message: Message) => {
     const canvas = createCanvas(800, 400);
 
     charts
-      .teamGoldAdvantage({
+      .lineChart({
         chartContext: canvas.getContext("2d"),
+        chartStat: "totalGold",
         summonerName,
         chartOptions: {
           responsive: false,

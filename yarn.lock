@@ -53,7 +53,7 @@
     semver "^7.3.0"
     tar "^6.0.2"
 
-"@discordjs/opus@^0.3.2":
+"@discordjs/opus@0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@discordjs/opus/-/opus-0.3.2.tgz#7dde2d4541ccfaa451e029f9d8da980286f9f56a"
   integrity sha512-T/ubykd4Xi19vDfw7/Oe+iTQBJ28yMI2PQAzK+Zue0PB9OpEYaeIXU7k5255061RwL+rHX9w7P/P2of+x2Vu2A==
@@ -90,9 +90,9 @@
     defer-to-connect "^1.0.1"
 
 "@types/chart.js@^2.9.24":
-  version "2.9.24"
-  resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.9.24.tgz#f044fde90c928cb054e2ea582eb68d9945d84bc6"
-  integrity sha512-AQI7X+ow3SaONl44JrHoL/5B+lCsJyG31UHZ5RP98Uh15hI/zjEkDsAb4EIm4P9TGfNhZLXw/nMc5w0u10+/fQ==
+  version "2.9.25"
+  resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.9.25.tgz#a22d18f6f7cb5b4499f39de600c4c520f635a58f"
+  integrity sha512-SPgPISpaGM42WL9Dezms4+8fInHxAXDzTs8DwPxhGuJT+jETXlVITTbe8bvK1n+sMmyyelR9B4w0lwMkA24oJg==
   dependencies:
     moment "^2.10.2"
 
@@ -772,7 +772,7 @@ fast-levenshtein@^2.0.6:
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
   integrity sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=
 
-ffmpeg-extract-audio@^1.0.2:
+ffmpeg-extract-audio@1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ffmpeg-extract-audio/-/ffmpeg-extract-audio-1.0.2.tgz#7b0b14adb704fb0093153d83f301c57987cde4b4"
   integrity sha1-ewsUrbcE+wCTFT2D8wHFeYfN5LQ=
@@ -1177,10 +1177,10 @@ latest-version@^5.0.0:
   dependencies:
     package-json "^6.3.0"
 
-league-charts@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/league-charts/-/league-charts-1.0.0.tgz#25e44050c592698b0048094806feebaa5d847ecd"
-  integrity sha512-uNsMtxQiZkEJApWiy70T/k/8kONmqb1aONJoYS7Rzb8fuEJMBPC5LhxmIwrnyHQEixFQoTuQy9zgJ8PeHqlWaQ==
+league-charts@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/league-charts/-/league-charts-1.1.2.tgz#f2ba2f8515ab3dcf024d9b7f7fe1bd641a61c3bf"
+  integrity sha512-N6cCWp2oW3S8lEj6N4enuofIj0dD2oUu5RbOxjki8cP64O12BuSnHbvxw5wT9RCK1OQ7PHr5o4xfgxo3dxNmrg==
   dependencies:
     "@types/chart.js" "^2.9.24"
     axios "^0.20.0"
@@ -1302,9 +1302,9 @@ mkdirp@^1.0.3:
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
 moment@^2.10.2:
-  version "2.29.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.0.tgz#fcbef955844d91deb55438613ddcec56e86a3425"
-  integrity sha512-z6IJ5HXYiuxvFTI6eiQ9dm77uE0gyy1yXNApVHqTcnIKfY9tIwEjlzsZ6u1LQXvVgKeTnv9Xm7NDvJ7lso3MtA==
+  version "2.29.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
+  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
 
 ms@2.0.0:
   version "2.0.0"
