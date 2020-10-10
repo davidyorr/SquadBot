@@ -5,6 +5,7 @@
     "outDir": "./dist",
     "lib": ["es2019"],
     "types": ["node"],
+    "typeRoots": ["src/types"],
     "strict": true,
     "noImplicitAny": true,
     "noUnusedLocals": true,

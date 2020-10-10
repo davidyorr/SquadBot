@@ -1,6 +1,15 @@
-import { Message, MessageReaction, PartialUser, User } from "discord.js";
+import {
+  Message,
+  MessageReaction,
+  PartialUser,
+  User,
+  VoiceConnection,
+} from "discord.js";
 import { createCanvas } from "canvas";
 import { LeagueCharts } from "league-charts";
+import * as extractAudio from "ffmpeg-extract-audio";
+
+let connection: VoiceConnection;
 
 const commands = {
   ping: {
@@ -15,7 +24,7 @@ type Command = keyof typeof commands;
 
 const charts = new LeagueCharts(process.env.RIOT_TOKEN || "");
 
-const handleMessage = (message: Message) => {
+const handleMessage = async (message: Message) => {
   const client = message.client;
 
   if (!client.user) {
@@ -91,6 +100,34 @@ const handleMessage = (message: Message) => {
         console.log("error creating chart", error);
         message.channel.send("error creating chart");
       });
+  }
+
+  if (message.content === "!annie") {
+    if (message.member?.voice.channel) {
+      connection = await message.member?.voice.channel.join();
+
+      try {
+        const readableStream = await extractAudio({
+          input: "https://i.imgur.com/iAN3UxQ.mp4",
+        });
+
+        const dispatcher = connection.play(readableStream, {
+          volume: 0.15,
+        });
+
+        dispatcher.on("finish", () => {
+          connection.disconnect();
+        });
+      } catch (err) {
+        console.log("error playing audio", err);
+      }
+    }
+  }
+
+  if (message.content === "!leave") {
+    if (connection) {
+      connection.disconnect();
+    }
   }
 
   const reactToMessageWithSameEmoji = (name: String) => {
