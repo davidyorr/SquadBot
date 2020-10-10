@@ -11,17 +11,6 @@ import * as extractAudio from "ffmpeg-extract-audio";
 
 let connection: VoiceConnection;
 
-const commands = {
-  ping: {
-    description: "responds with pong",
-    execute: (message: Message) => {
-      message.channel.send("pong");
-    },
-  },
-};
-
-type Command = keyof typeof commands;
-
 const charts = new LeagueCharts(process.env.RIOT_TOKEN || "");
 
 const handleMessage = async (message: Message) => {
@@ -163,14 +152,6 @@ const handleMessage = async (message: Message) => {
       message.channel.send(value);
     }
   }
-
-  if (message.mentions.has(client.user)) {
-    let messageSplit = message.content.split(" ");
-    if (messageSplit.length > 1) {
-      let command = messageSplit[1] as Command;
-      executeCommand(command, message);
-    }
-  }
 };
 
 const reactionsToMirror: string[] = ["kiwicat", "catcow", "😩"];
@@ -200,12 +181,6 @@ const handleMessageReactionRemove = (
         .get(reaction.emoji.id ?? reaction.emoji.name)
         ?.remove();
     }
-  }
-};
-
-const executeCommand = (command: Command, message: Message) => {
-  if (commands[command]) {
-    commands[command].execute(message);
   }
 };
 
