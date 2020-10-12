@@ -13,6 +13,12 @@ let connection: VoiceConnection;
 
 const charts = new LeagueCharts(process.env.RIOT_TOKEN || "");
 
+function sendErrorMessage(message: Message, content: string) {
+  message.channel.send(`-- ${content} --`, {
+    code: "diff",
+  });
+}
+
 const handleMessage = async (message: Message) => {
   const client = message.client;
 
@@ -22,6 +28,20 @@ const handleMessage = async (message: Message) => {
   if (message.author.id === client.user.id) {
     return;
   }
+
+  const handleChartError = (error: any) => {
+    console.log("error creating chart", error);
+    if (error.response) {
+      const errorMessage = error.response?.data?.status?.message;
+
+      sendErrorMessage(
+        message,
+        `Error creating chart${errorMessage ? ` : ${errorMessage}` : ""}`
+      );
+    } else {
+      sendErrorMessage(message, "Error creating chart");
+    }
+  };
 
   if (message.content.startsWith("!champdmg")) {
     const split = message.content.split(" ");
@@ -54,8 +74,7 @@ const handleMessage = async (message: Message) => {
         },
       })
       .catch((error) => {
-        console.log("error creating chart", error);
-        message.channel.send("error creating chart");
+        handleChartError(error);
       });
   }
 
@@ -88,8 +107,7 @@ const handleMessage = async (message: Message) => {
         },
       })
       .catch((error) => {
-        console.log("error creating chart", error);
-        message.channel.send("error creating chart");
+        handleChartError(error);
       });
   }
 
