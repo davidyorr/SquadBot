@@ -1,4 +1,10 @@
-import { Client, Message, MessageReaction, VoiceConnection } from "discord.js";
+import {
+  Client,
+  Message,
+  MessageReaction,
+  VoiceChannel,
+  VoiceConnection,
+} from "discord.js";
 import { createCanvas } from "canvas";
 import { LeagueCharts } from "league-charts";
 import * as extractAudio from "ffmpeg-extract-audio";
@@ -120,25 +126,44 @@ export class SquadBot {
         });
     }
 
+    const joinChannelAndPlayAudio = async (
+      channel: VoiceChannel,
+      url: string
+    ) => {
+      this.#voiceConnection = await channel.join();
+
+      try {
+        const readableStream = await extractAudio({
+          input: url,
+        });
+
+        const dispatcher = this.#voiceConnection.play(readableStream, {
+          volume: 0.15,
+        });
+
+        dispatcher.on("finish", () => {
+          this.#voiceConnection?.disconnect();
+        });
+      } catch (err) {
+        console.log("error playing audio", err);
+      }
+    };
+
     if (message.content === "!annie") {
       if (message.member?.voice.channel) {
-        this.#voiceConnection = await message.member?.voice.channel.join();
+        joinChannelAndPlayAudio(
+          message.member?.voice.channel,
+          "https://i.imgur.com/iAN3UxQ.mp4"
+        );
+      }
+    }
 
-        try {
-          const readableStream = await extractAudio({
-            input: "https://i.imgur.com/iAN3UxQ.mp4",
-          });
-
-          const dispatcher = this.#voiceConnection.play(readableStream, {
-            volume: 0.15,
-          });
-
-          dispatcher.on("finish", () => {
-            this.#voiceConnection?.disconnect();
-          });
-        } catch (err) {
-          console.log("error playing audio", err);
-        }
+    if (message.content === "!karma") {
+      if (message.member?.voice.channel) {
+        joinChannelAndPlayAudio(
+          message.member?.voice.channel,
+          "https://i.imgur.com/2XUwT87.mp4"
+        );
       }
     }
 
