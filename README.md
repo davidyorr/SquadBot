@@ -3,3 +3,5 @@
 </p>
 
 # SquadBot
+
+A ~~simple~~ very useful Discord bot.
