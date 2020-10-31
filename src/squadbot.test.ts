@@ -78,7 +78,7 @@ describe("SquadBot", () => {
           content: "!gold",
         });
 
-        const spy = jest.spyOn(message.channel, "send");
+        const spy = jest.spyOn(mockDiscordJs.TextChannel, "send");
 
         mockDiscordJs.Client.emit("message", message);
 
