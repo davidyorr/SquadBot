@@ -26,7 +26,16 @@ export class SquadBot {
     client.on("messageReactionAdd", this.#handleMessageReactionAdd);
     client.on("messageReactionRemove", this.#handleMessageReactionRemove);
 
-    client.login(token);
+    if (token !== "") {
+      client
+        .login(token)
+        .then(() => {
+          console.log("logged in");
+        })
+        .catch((error) => {
+          console.log("error logging in", error);
+        });
+    }
   }
 
   #sendErrorMessage = (message: Message, content: string): void => {
