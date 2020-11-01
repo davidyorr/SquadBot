@@ -16,6 +16,7 @@ export class MockDiscordJs {
   Channel: Channel;
   TextChannel: TextChannel;
   ClientUser: ClientUser;
+  #messageIdCounter = 0;
 
   constructor() {
     this.Client = new Client();
@@ -45,7 +46,7 @@ export class MockDiscordJs {
     return new Message(
       this.Client,
       {
-        id: "mock-message-id-" + Date.now(),
+        id: "mock-message-id-" + this.#messageIdCounter++,
         ...message,
       },
       this.TextChannel
