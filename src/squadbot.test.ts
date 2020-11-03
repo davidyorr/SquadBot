@@ -48,6 +48,32 @@ describe("SquadBot", () => {
       expect(spy).toHaveBeenCalledWith("echo me");
     });
 
+    it("doesnt echo back to back identical messages if it is a command", () => {
+      const userA = mockDiscordJs.mockUser({
+        id: "mock-user-a-id",
+      });
+      const userB = mockDiscordJs.mockUser({
+        id: "mock-user-b-id",
+      });
+      const messageA = mockDiscordJs.mockMessage({
+        author: userA,
+        content: "!annie",
+      });
+      const messageB = mockDiscordJs.mockMessage({
+        author: userB,
+        content: "!annie",
+      });
+
+      mockDiscordJs.addMessageToCache(messageA);
+      mockDiscordJs.addMessageToCache(messageB);
+
+      const spy = jest.spyOn(mockDiscordJs.TextChannel, "send");
+
+      mockDiscordJs.Client.emit("message", messageB);
+
+      expect(spy).toHaveBeenCalledTimes(0);
+    });
+
     describe("!champdmg", () => {
       it("notifies the user if there is no summoner name", () => {
         const user = mockDiscordJs.mockUser({

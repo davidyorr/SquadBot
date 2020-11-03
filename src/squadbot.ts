@@ -200,12 +200,15 @@ export class SquadBot {
     if (previousTwoMessages.length === 2) {
       const messageA = previousTwoMessages[0];
       const messageB = previousTwoMessages[1];
-      // using .bot is not exactly what we want (we want to check if it's SquadBot, not any bot)
+
       const value =
         messageA.content === messageB.content &&
         messageA.author.id !== messageB.author.id &&
+        // using .bot is not exactly what we want (we want to check if it's SquadBot, not any bot)
         !messageA.author.bot &&
-        !messageB.author.bot
+        !messageB.author.bot &&
+        // don't echo if it's a command
+        !messageA.content.startsWith("!")
           ? messageA.content
           : "";
 
