@@ -11,7 +11,7 @@
     "start": "node dist/index.js",
     "dev": "export DEV=true; concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
     "lint": "eslint --ext .ts src/",
-    "test": "jest"
+    "test": "jest --runInBand --forceExit"
   },
   "dependencies": {
     "@discordjs/opus": "0.3.2",
