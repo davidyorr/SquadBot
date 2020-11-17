@@ -1,7 +1,9 @@
 import {
+  Channel,
   Client,
   Message,
   MessageReaction,
+  TextChannel,
   VoiceChannel,
   VoiceConnection,
 } from "discord.js";
@@ -19,9 +21,7 @@ export class SquadBot {
     this.#charts = new LeagueCharts(process.env.RIOT_TOKEN || "");
 
     // set up handlers
-    client.on("ready", () => {
-      console.log("I am ready!");
-    });
+    client.on("ready", this.#handleReady);
     client.on("message", this.#handleMessage);
     client.on("messageReactionAdd", this.#handleMessageReactionAdd);
     client.on("messageReactionRemove", this.#handleMessageReactionRemove);
@@ -41,6 +41,33 @@ export class SquadBot {
   #sendErrorMessage = (message: Message, content: string): void => {
     message.channel.send(`-- ${content} --`, {
       code: "diff",
+    });
+  };
+
+  #handleReady = (): void => {
+    console.log("I am ready!");
+
+    const isTextChannel = (channel: Channel): channel is TextChannel => {
+      return channel.type === "text";
+    };
+
+    const limit = 10;
+
+    this.#client.channels.cache.forEach((channel) => {
+      if (isTextChannel(channel)) {
+        channel.messages
+          .fetch({
+            limit,
+          })
+          .then(() =>
+            console.log(
+              `added ${limit} messages from ${channel.name} to the cache`
+            )
+          )
+          .catch((error) => {
+            console.log("error adding messages to the cache", error);
+          });
+      }
     });
   };
 
