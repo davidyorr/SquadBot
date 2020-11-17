@@ -137,7 +137,10 @@ export class SquadBot {
 
     const joinChannelAndPlayAudio = async (
       channel: VoiceChannel,
-      url: string
+      url: string,
+      options: {
+        volume?: number;
+      } = {}
     ) => {
       this.#voiceConnection = await channel.join();
 
@@ -147,7 +150,7 @@ export class SquadBot {
         });
 
         const dispatcher = this.#voiceConnection.play(readableStream, {
-          volume: 0.15,
+          volume: options.volume ?? 0.15,
         });
 
         dispatcher.on("finish", () => {
@@ -162,7 +165,10 @@ export class SquadBot {
       if (message.member?.voice.channel) {
         joinChannelAndPlayAudio(
           message.member?.voice.channel,
-          "https://i.imgur.com/iAN3UxQ.mp4"
+          "https://i.imgur.com/iAN3UxQ.mp4",
+          {
+            volume: 0.15,
+          }
         );
       }
     }
@@ -171,7 +177,22 @@ export class SquadBot {
       if (message.member?.voice.channel) {
         joinChannelAndPlayAudio(
           message.member?.voice.channel,
-          "https://i.imgur.com/2XUwT87.mp4"
+          "https://i.imgur.com/2XUwT87.mp4",
+          {
+            volume: 0.17,
+          }
+        );
+      }
+    }
+
+    if (message.content === "!cnn") {
+      if (message.member?.voice.channel) {
+        joinChannelAndPlayAudio(
+          message.member?.voice.channel,
+          "https://i.imgur.com/vZHKUBl.mp4",
+          {
+            volume: 0.38,
+          }
         );
       }
     }
