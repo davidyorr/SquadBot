@@ -3,3 +3,5 @@ token.*
 dist/
 coverage/
 .vscode/*
+yalc.lock
+.yalc/
