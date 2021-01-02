@@ -94,17 +94,41 @@ export class SquadBot {
       }
     };
 
-    if (message.content.startsWith("!champdmg")) {
-      const split = message.content.split(" ");
-      if (split.length === 1) {
-        message.channel.send('missing summoner name: "!champdmg SummonerName"');
-        return;
-      }
+    const sendGoldChart = (
+      summonerName: string,
+      callback?: () => void
+    ): void => {
+      const canvas = createCanvas(800, 400);
 
-      const summonerName = message.content
-        .substring("!champdmg".length + 1)
-        .trim();
+      this.#charts
+        .lineChart({
+          chartContext: canvas.getContext("2d"),
+          chartStat: "totalGold",
+          summonerName,
+          chartOptions: {
+            responsive: false,
+            animation: {
+              duration: 0,
+            },
+          },
+          afterRender: () => {
+            message.channel
+              .send({
+                files: [canvas.createPNGStream()],
+              })
+              .then(() => {
+                if (callback) {
+                  callback();
+                }
+              });
+          },
+        })
+        .catch((error) => {
+          handleChartError(error);
+        });
+    };
 
+    const sendChampionDamageChart = (summonerName: string): void => {
       const canvas = createCanvas(600, 500);
 
       this.#charts
@@ -127,6 +151,32 @@ export class SquadBot {
         .catch((error) => {
           handleChartError(error);
         });
+    };
+
+    if (message.content.startsWith("!lol")) {
+      const split = message.content.split(" ");
+      if (split.length === 1) {
+        message.channel.send('missing summoner name: "!lol SummonerName"');
+        return;
+      }
+
+      const summonerName = message.content.substring("!lol".length + 1).trim();
+
+      sendGoldChart(summonerName, () => sendChampionDamageChart(summonerName));
+    }
+
+    if (message.content.startsWith("!champdmg")) {
+      const split = message.content.split(" ");
+      if (split.length === 1) {
+        message.channel.send('missing summoner name: "!champdmg SummonerName"');
+        return;
+      }
+
+      const summonerName = message.content
+        .substring("!champdmg".length + 1)
+        .trim();
+
+      sendChampionDamageChart(summonerName);
     }
 
     if (message.content.startsWith("!gold")) {
@@ -138,28 +188,7 @@ export class SquadBot {
 
       const summonerName = message.content.substring("!gold".length + 1).trim();
 
-      const canvas = createCanvas(800, 400);
-
-      this.#charts
-        .lineChart({
-          chartContext: canvas.getContext("2d"),
-          chartStat: "totalGold",
-          summonerName,
-          chartOptions: {
-            responsive: false,
-            animation: {
-              duration: 0,
-            },
-          },
-          afterRender: () => {
-            message.channel.send({
-              files: [canvas.createPNGStream()],
-            });
-          },
-        })
-        .catch((error) => {
-          handleChartError(error);
-        });
+      sendGoldChart(summonerName);
     }
 
     const joinChannelAndPlayAudio = async (
