@@ -102,7 +102,7 @@ export class SquadBot {
 
       this.#charts
         .lineChart({
-          chartContext: canvas.getContext("2d"),
+          chartContext: canvas,
           chartStat: "totalGold",
           summonerName,
           chartOptions: {
@@ -128,12 +128,15 @@ export class SquadBot {
         });
     };
 
-    const sendChampionDamageChart = (summonerName: string): void => {
-      const canvas = createCanvas(600, 500);
+    const sendChampionDamageChart = (
+      summonerName: string,
+      callback?: () => void
+    ): void => {
+      const canvas = createCanvas(750, 500);
 
       this.#charts
         .barChart({
-          chartContext: canvas.getContext("2d"),
+          chartContext: canvas,
           chartStat: "totalDamageDealtToChampions",
           summonerName,
           chartOptions: {
@@ -142,6 +145,30 @@ export class SquadBot {
               duration: 0,
             },
           },
+          afterRender: () => {
+            message.channel
+              .send({
+                files: [canvas.createPNGStream()],
+              })
+              .then(() => {
+                if (callback) {
+                  callback();
+                }
+              });
+          },
+        })
+        .catch((error) => {
+          handleChartError(error);
+        });
+    };
+
+    const sendScoreboard = (summonerName: string): void => {
+      const canvas = createCanvas(800, 450);
+
+      this.#charts
+        .scoreboard({
+          chartContext: canvas,
+          summonerName,
           afterRender: () => {
             message.channel.send({
               files: [canvas.createPNGStream()],
@@ -162,7 +189,11 @@ export class SquadBot {
 
       const summonerName = message.content.substring("!lol".length + 1).trim();
 
-      sendGoldChart(summonerName, () => sendChampionDamageChart(summonerName));
+      sendGoldChart(summonerName, () =>
+        sendChampionDamageChart(summonerName, () =>
+          sendScoreboard(summonerName)
+        )
+      );
     }
 
     if (message.content.startsWith("!champdmg")) {
@@ -189,6 +220,22 @@ export class SquadBot {
       const summonerName = message.content.substring("!gold".length + 1).trim();
 
       sendGoldChart(summonerName);
+    }
+
+    if (message.content.startsWith("!scoreboard")) {
+      const split = message.content.split(" ");
+      if (split.length === 1) {
+        message.channel.send(
+          'missing summoner name: "!scoreboard SummonerName"'
+        );
+        return;
+      }
+
+      const summonerName = message.content
+        .substring("!scoreboard".length + 1)
+        .trim();
+
+      sendScoreboard(summonerName);
     }
 
     const joinChannelAndPlayAudio = async (
