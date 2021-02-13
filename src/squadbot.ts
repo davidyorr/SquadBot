@@ -190,8 +190,10 @@ export class SquadBot {
       const summonerName = message.content.substring("!lol".length + 1).trim();
 
       sendGoldChart(summonerName, () =>
-        sendChampionDamageChart(summonerName, () =>
-          sendScoreboard(summonerName)
+        sendChampionDamageChart(
+          summonerName,
+          () => undefined
+          // sendScoreboard(summonerName)
         )
       );
     }
