@@ -3242,10 +3242,10 @@ latest-version@^5.0.0:
   dependencies:
     package-json "^6.3.0"
 
-league-charts@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/league-charts/-/league-charts-2.0.0.tgz#c45847a56876debd8469d69d0758c4def21e881e"
-  integrity sha512-Z1btPiRRfpnnnDB5Gjc1egH2pHrX8lGJs7k5uA5g98Fm90LkwO+u9p1HD1h0x4RIKoV8+YaBHqIFDg0THnakmQ==
+league-charts@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/league-charts/-/league-charts-2.0.1.tgz#d8dd01418be789240c58e3882a9d250a50dec47e"
+  integrity sha512-VFMn9snbsJiBFpQjx2zY9UUPyj/0zadoI8eVXPvdGoO3oQGBBj1OvQ7NlmPkyQ0pr5LQdOfjiZjZMHEQ3aKwEQ==
   dependencies:
     "@types/chart.js" "^2.9.24"
     axios "^0.20.0"
