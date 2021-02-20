@@ -306,6 +306,13 @@ export class SquadBot {
       this.#voiceConnection?.disconnect();
     }
 
+    if (message.content === "!roll") {
+      const randomInteger = (min: number, max: number) =>
+        Math.floor(Math.random() * (max - min + 1)) + min;
+
+      message.channel.send(randomInteger(1, 6));
+    }
+
     const reactToMessageWithSameEmoji = (name: string) => {
       const id = this.#client.emojis.cache.find((emoji) => emoji.name === name);
       if (id) {
