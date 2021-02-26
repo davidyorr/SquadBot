@@ -18,7 +18,10 @@ export class SquadBot {
 
   constructor(client: Client, token: string) {
     this.#client = client;
-    this.#charts = new LeagueCharts(process.env.RIOT_TOKEN || "");
+    this.#charts = new LeagueCharts(process.env.RIOT_TOKEN || "", {
+      maxAge: 20 * 1000,
+      limit: 6,
+    });
 
     // set up handlers
     client.on("ready", this.#handleReady);
@@ -190,10 +193,8 @@ export class SquadBot {
       const summonerName = message.content.substring("!lol".length + 1).trim();
 
       sendGoldChart(summonerName, () =>
-        sendChampionDamageChart(
-          summonerName,
-          () => undefined
-          // sendScoreboard(summonerName)
+        sendChampionDamageChart(summonerName, () =>
+          sendScoreboard(summonerName)
         )
       );
     }
