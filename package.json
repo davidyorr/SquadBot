@@ -16,10 +16,11 @@
   },
   "dependencies": {
     "@discordjs/opus": "0.3.3",
-    "canvas": "2.6.1",
+    "canvas": "2.8.0",
+    "chart.js": "2.9.4",
     "discord.js": "12.4.1",
     "ffmpeg-extract-audio": "1.0.2",
-    "league-charts": "2.1.1"
+    "league-charts": "2.2.1"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
