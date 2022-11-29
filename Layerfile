@@ -1,0 +1,16 @@
+FROM vm/ubuntu:18.04
+
+RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
+    curl -fSsL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && \
+    apt-get install nodejs yarn && \
+    snap install ffmpeg
+
+
+COPY . .
+SECRET ENV BOT_TOKEN
+SECRET ENV RIOT_TOKEN
+RUN yarn install
+RUN yarn build
+RUN BACKGROUND node dist/index.js
