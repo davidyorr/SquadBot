@@ -264,6 +264,7 @@ export class SquadBot {
         });
       } catch (err) {
         console.log("error playing audio", err);
+        this.#voiceConnection?.disconnect();
       }
     };
 

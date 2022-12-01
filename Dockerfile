@@ -1,7 +1,7 @@
 FROM debian:bullseye as builder
 
-ARG NODE_VERSION=14.15.1
-ARG YARN_VERSION=1.22.5
+ARG NODE_VERSION=16.16.0
+ARG YARN_VERSION=1.22.19
 
 RUN apt-get update; apt install -y curl
 RUN curl https://get.volta.sh | bash
@@ -29,6 +29,8 @@ LABEL fly_launch_runtime="nodejs"
 
 COPY --from=builder /root/.volta /root/.volta
 COPY --from=builder /app /app
+RUN apt update
+RUN apt install ffmpeg -y
 
 WORKDIR /app
 ENV NODE_ENV production
