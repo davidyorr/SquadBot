@@ -107,7 +107,7 @@ export class SquadBot {
         .lineChart({
           chartContext: canvas,
           chartStat: "totalGold",
-          summonerName,
+          gameName: summonerName,
           chartOptions: {
             responsive: false,
             animation: {
@@ -141,7 +141,7 @@ export class SquadBot {
         .barChart({
           chartContext: canvas,
           chartStat: "totalDamageDealtToChampions",
-          summonerName,
+          gameName: summonerName,
           chartOptions: {
             responsive: false,
             animation: {
@@ -171,7 +171,7 @@ export class SquadBot {
       this.#charts
         .scoreboard({
           chartContext: canvas,
-          summonerName,
+          gameName: summonerName,
           afterRender: () => {
             message.channel.send({
               files: [canvas.createPNGStream()],

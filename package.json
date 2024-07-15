@@ -20,7 +20,7 @@
     "chart.js": "2.9.4",
     "discord.js": "12.4.1",
     "ffmpeg-extract-audio": "1.0.2",
-    "league-charts": "2.2.1"
+    "league-charts": "3.0.1"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
