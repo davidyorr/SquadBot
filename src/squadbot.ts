@@ -316,7 +316,7 @@ export class SquadBot {
     }
 
     if (message.content === "!version") {
-      message.channel.send(process.env.GIT_SHA);
+      message.channel.send(process.env.GIT_SHA ?? 'no version found');
     }
 
     const reactToMessageWithSameEmoji = (name: string) => {
