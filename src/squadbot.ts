@@ -315,6 +315,10 @@ export class SquadBot {
       message.channel.send(randomInteger(1, 6));
     }
 
+    if (message.content === "!version") {
+      message.channel.send(process.env.GIT_SHA);
+    }
+
     const reactToMessageWithSameEmoji = (name: string) => {
       const id = this.#client.emojis.cache.find((emoji) => emoji.name === name);
       if (id) {
