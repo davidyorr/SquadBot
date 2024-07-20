@@ -36,4 +36,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV PATH /root/.volta/bin:$PATH
 
+ARG GIT_SHA
+ENV GIT_SHA=$GIT_SHA
+
 CMD [ "node", "dist/index.js" ]
