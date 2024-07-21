@@ -5,3 +5,4 @@ coverage/
 .vscode/*
 yalc.lock
 .yalc/
+health-check.txt
