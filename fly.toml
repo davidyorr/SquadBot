@@ -33,6 +33,6 @@ processes = []
   [[services.machine_checks]]
     image = "alpine:latest"
     entrypoint = ["/bin/sh", "-c"]
-    command = ["grep", "health-check.txt", "|", "grep", "Hello, World!"]
+    command = ["grep", "READY", "health-check.txt"]
     kill_signal = "SIGKILL"
     kill_timeout = "5s"
