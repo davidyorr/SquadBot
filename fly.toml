@@ -15,7 +15,6 @@ processes = []
   internal_port = 8080
   processes = ["app"]
   protocol = "tcp"
-  script_checks = []
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
@@ -29,10 +28,3 @@ processes = []
   [[services.ports]]
     handlers = ["tls", "http"]
     port = 443
-
-  [[services.machine_checks]]
-    image = "alpine:latest"
-    entrypoint = ["/bin/sh", "-c"]
-    command = ["sleep", "60", "&&", "grep", "READY", "health-check.txt"]
-    kill_signal = "SIGKILL"
-    kill_timeout = "5s"
