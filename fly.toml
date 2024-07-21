@@ -30,8 +30,9 @@ processes = []
     handlers = ["tls", "http"]
     port = 443
 
-[checks]
-  [checks.bot_ready]
-    grace_period = "60s"
-    type = "script"
-    command = "grep READY health-check.txt"
+  [[services.machine_checks]]
+    image = "alpine:latest"
+    entrypoint = ["/bin/sh", "-c"]
+    command = ["sleep", "60", "&&", "grep", "READY", "health-check.txt"]
+    kill_signal = "SIGKILL"
+    kill_timeout = "5s"
