@@ -1,6 +1,6 @@
 FROM debian:bullseye AS builder
 
-RUN apt update && apt install curl
+RUN apt update && apt install curl -y
 
 ENV NVM_VERSION 0.39.7
 ENV NODE_VERSION 20.9.0
