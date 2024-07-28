@@ -1,5 +1,7 @@
 FROM debian:bullseye AS builder
 
+RUN apt update && apt install curl
+
 ENV NVM_VERSION 0.39.7
 ENV NODE_VERSION 20.9.0
 ENV NVM_DIR /usr/local/nvm
@@ -24,7 +26,7 @@ FROM debian:bullseye
 
 LABEL fly_launch_runtime="nodejs"
 COPY --from=builder /app /app
-RUN apt-get update && apt-get install ffmpeg -y
+RUN apt update && apt install ffmpeg -y
 
 WORKDIR /app
 ENV NODE_ENV production
