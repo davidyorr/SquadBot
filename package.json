@@ -6,6 +6,7 @@
   "repository": "git@github.com:davidyorr/SquadBot.git",
   "author": "David Orr <davidyorr@gmail.com>",
   "license": "MIT",
+  "packageManager": "pnpm@9.6.0",
   "scripts": {
     "build": "yarn run tsc",
     "start": "NODE_ENV=prod node dist/index.js",

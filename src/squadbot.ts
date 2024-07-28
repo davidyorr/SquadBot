@@ -10,7 +10,6 @@ import {
 import { createCanvas } from "canvas";
 import { LeagueCharts } from "league-charts";
 import * as extractAudio from "ffmpeg-extract-audio";
-import { writeFileSync } from "fs";
 
 export class SquadBot {
   #client: Client;
@@ -50,7 +49,6 @@ export class SquadBot {
 
   #handleReady = (): void => {
     console.log("I am ready!");
-    writeFileSync("health-check.txt", "READY");
 
     const isTextChannel = (channel: Channel): channel is TextChannel => {
       return channel.type === "text";
