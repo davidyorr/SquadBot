@@ -1,4 +1,16 @@
-FROM node:20.9.0-bullseye-slim AS builder
+FROM debian:bullseye AS builder
+
+ENV NVM_VERSION 0.39.7
+ENV NODE_VERSION 20.9.0
+ENV NVM_DIR /usr/local/nvm
+RUN mkdir $NVM_DIR
+RUN curl -o- "https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh" | bash
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+RUN echo "source $NVM_DIR/nvm.sh && \
+    nvm install $NODE_VERSION && \
+    nvm alias default $NODE_VERSION && \
+    nvm use default" | bash
 
 ENV NODE_ENV production
 RUN corepack enable
@@ -8,7 +20,7 @@ RUN pnpm install --frozen-lockfile && pnpm build
 RUN mkdir /app
 WORKDIR /app
 
-FROM node:20.9.0-bullseye-slim
+FROM debian:bullseye
 
 LABEL fly_launch_runtime="nodejs"
 COPY --from=builder /app /app
