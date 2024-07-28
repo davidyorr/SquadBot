@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@discordjs/opus": "0.9.0",
-    "canvas": "2.8.0",
+    "canvas": "2.11.2",
     "chart.js": "2.9.4",
     "discord.js": "12.4.1",
     "ffmpeg-extract-audio": "1.0.2",
