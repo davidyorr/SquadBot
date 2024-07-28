@@ -8,7 +8,7 @@
   "license": "MIT",
   "packageManager": "pnpm@9.6.0",
   "scripts": {
-    "build": "yarn run tsc",
+    "build": "pnpm run tsc",
     "start": "NODE_ENV=prod node dist/index.js",
     "dev": "export NODE_ENV=dev; concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
     "format": "prettier src jest --write",
