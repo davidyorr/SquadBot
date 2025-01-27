@@ -1,9 +1,14 @@
-FROM debian:bullseye AS builder
+FROM debian:bookworm AS builder
 
-RUN apt update && apt install curl -y
+RUN apt update && apt install -y \
+    curl \
+    # the @discordjs/opus package isn't fetching the prebuilt binary, so we need these to manually build it
+    python3 \
+    make \
+    build-essential
 
 ENV NVM_VERSION 0.39.7
-ENV NODE_VERSION 20.9.0
+ENV NODE_VERSION 20.18.2
 ENV NVM_DIR /usr/local/nvm
 RUN mkdir $NVM_DIR
 RUN curl -o- "https://raw.githubusercontent.com/creationix/nvm/v${NVM_VERSION}/install.sh" | bash
@@ -14,15 +19,15 @@ RUN echo "source $NVM_DIR/nvm.sh && \
     nvm alias default $NODE_VERSION && \
     nvm use default" | bash
 
-ENV NODE_ENV production
+ENV NODE_ENV dev
 RUN corepack enable
-COPY . .
-RUN pnpm install --frozen-lockfile && pnpm build
 
 RUN mkdir /app
 WORKDIR /app
+COPY . .
+RUN pnpm install --frozen-lockfile && pnpm build
 
-FROM debian:bullseye
+FROM node:20.18.2-bookworm-slim
 
 LABEL fly_launch_runtime="nodejs"
 COPY --from=builder /app /app

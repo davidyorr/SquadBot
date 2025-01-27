@@ -11,21 +11,25 @@
     "build": "pnpm exec tsc",
     "start": "NODE_ENV=prod node dist/index.js",
     "dev": "export NODE_ENV=dev; concurrently \"tsc --watch\" \"nodemon dist/index.js\"",
+    "docker": "docker compose up",
+    "docker:clean": "docker system prune -a --volumes",
     "format": "prettier src jest --write",
     "lint": "eslint --ext .ts src/",
     "test": "jest --runInBand --forceExit"
   },
   "dependencies": {
     "@discordjs/opus": "0.9.0",
+    "@discordjs/voice": "0.18.0",
     "canvas": "2.11.2",
     "chart.js": "2.9.4",
-    "discord.js": "12.4.1",
+    "discord.js": "14.17.3",
     "ffmpeg-extract-audio": "1.0.2",
-    "league-charts": "3.0.1"
+    "league-charts": "3.0.1",
+    "libsodium-wrappers": "0.7.15"
   },
   "devDependencies": {
     "@types/jest": "26.0.15",
-    "@types/node": "14.6.4",
+    "@types/node": "22.10.10",
     "@typescript-eslint/eslint-plugin": "4.7.0",
     "@typescript-eslint/parser": "4.7.0",
     "concurrently": "5.3.0",
@@ -34,6 +38,6 @@
     "nodemon": "2.0.6",
     "prettier": "2.1.2",
     "ts-jest": "26.4.4",
-    "typescript": "4.0.5"
+    "typescript": "5.7.3"
   }
 }

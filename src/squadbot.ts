@@ -1,15 +1,23 @@
 import {
-  Channel,
   Client,
+  codeBlock,
+  Events,
   Message,
   MessageReaction,
+  PartialMessageReaction,
   TextChannel,
-  VoiceChannel,
-  VoiceConnection,
+  VoiceBasedChannel,
 } from "discord.js";
 import { createCanvas } from "canvas";
 import { LeagueCharts } from "league-charts";
 import * as extractAudio from "ffmpeg-extract-audio";
+import {
+  AudioPlayerStatus,
+  createAudioPlayer,
+  createAudioResource,
+  joinVoiceChannel,
+  VoiceConnection,
+} from "@discordjs/voice";
 
 export class SquadBot {
   #client: Client;
@@ -24,10 +32,10 @@ export class SquadBot {
     });
 
     // set up handlers
-    client.on("ready", this.#handleReady);
-    client.on("message", this.#handleMessage);
-    client.on("messageReactionAdd", this.#handleMessageReactionAdd);
-    client.on("messageReactionRemove", this.#handleMessageReactionRemove);
+    client.on(Events.ClientReady, this.#handleReady);
+    client.on(Events.MessageCreate, this.#handleMessage);
+    client.on(Events.MessageReactionAdd, this.#handleMessageReactionAdd);
+    client.on(Events.MessageReactionRemove, this.#handleMessageReactionRemove);
 
     if (token !== "") {
       client
@@ -42,22 +50,21 @@ export class SquadBot {
   }
 
   #sendErrorMessage = (message: Message, content: string): void => {
-    message.channel.send(`-- ${content} --`, {
-      code: "diff",
-    });
+    if (message.channel.isSendable()) {
+      message.channel
+        .send(codeBlock(`-- ${content} --`))
+        .then(console.log)
+        .catch(console.error);
+    }
   };
 
   #handleReady = (): void => {
     console.log("I am ready!");
 
-    const isTextChannel = (channel: Channel): channel is TextChannel => {
-      return channel.type === "text";
-    };
-
     const limit = 10;
 
     this.#client.channels.cache.forEach((channel) => {
-      if (isTextChannel(channel)) {
+      if (channel instanceof TextChannel) {
         channel.messages
           .fetch({
             limit,
@@ -115,15 +122,17 @@ export class SquadBot {
             },
           },
           afterRender: () => {
-            message.channel
-              .send({
-                files: [canvas.createPNGStream()],
-              })
-              .then(() => {
-                if (callback) {
-                  callback();
-                }
-              });
+            if (message.channel.isSendable()) {
+              message.channel
+                .send({
+                  files: [canvas.createPNGStream()],
+                })
+                .then(() => {
+                  if (callback) {
+                    callback();
+                  }
+                });
+            }
           },
         })
         .catch((error) => {
@@ -149,15 +158,17 @@ export class SquadBot {
             },
           },
           afterRender: () => {
-            message.channel
-              .send({
-                files: [canvas.createPNGStream()],
-              })
-              .then(() => {
-                if (callback) {
-                  callback();
-                }
-              });
+            if (message.channel.isSendable()) {
+              message.channel
+                .send({
+                  files: [canvas.createPNGStream()],
+                })
+                .then(() => {
+                  if (callback) {
+                    callback();
+                  }
+                });
+            }
           },
         })
         .catch((error) => {
@@ -173,9 +184,11 @@ export class SquadBot {
           chartContext: canvas,
           gameName: summonerName,
           afterRender: () => {
-            message.channel.send({
-              files: [canvas.createPNGStream()],
-            });
+            if (message.channel.isSendable()) {
+              message.channel.send({
+                files: [canvas.createPNGStream()],
+              });
+            }
           },
         })
         .catch((error) => {
@@ -185,7 +198,7 @@ export class SquadBot {
 
     if (message.content.startsWith("!lol")) {
       const split = message.content.split(" ");
-      if (split.length === 1) {
+      if (split.length === 1 && message.channel.isSendable()) {
         message.channel.send('missing summoner name: "!lol SummonerName"');
         return;
       }
@@ -201,7 +214,7 @@ export class SquadBot {
 
     if (message.content.startsWith("!champdmg")) {
       const split = message.content.split(" ");
-      if (split.length === 1) {
+      if (split.length === 1 && message.channel.isSendable()) {
         message.channel.send('missing summoner name: "!champdmg SummonerName"');
         return;
       }
@@ -215,7 +228,7 @@ export class SquadBot {
 
     if (message.content.startsWith("!gold")) {
       const split = message.content.split(" ");
-      if (split.length === 1) {
+      if (split.length === 1 && message.channel.isSendable()) {
         message.channel.send('missing summoner name: "!gold SummonerName"');
         return;
       }
@@ -227,7 +240,7 @@ export class SquadBot {
 
     if (message.content.startsWith("!scoreboard")) {
       const split = message.content.split(" ");
-      if (split.length === 1) {
+      if (split.length === 1 && message.channel.isSendable()) {
         message.channel.send(
           'missing summoner name: "!scoreboard SummonerName"'
         );
@@ -242,25 +255,60 @@ export class SquadBot {
     }
 
     const joinChannelAndPlayAudio = async (
-      channel: VoiceChannel,
+      channel: VoiceBasedChannel,
       url: string,
+      title: string,
       options: {
         volume?: number;
       } = {}
     ) => {
-      this.#voiceConnection = await channel.join();
+      this.#voiceConnection = joinVoiceChannel({
+        channelId: channel.id,
+        guildId: channel.guild.id,
+        adapterCreator: channel.guild.voiceAdapterCreator,
+      });
 
       try {
         const readableStream = await extractAudio({
           input: url,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          transform: (cmd: any) => {
+            cmd.audioFilters([
+              {
+                filter: "volume",
+                options: `${options.volume ?? "0.33"}`,
+              },
+            ]);
+          },
         });
 
-        const dispatcher = this.#voiceConnection.play(readableStream, {
-          volume: options.volume ?? 0.15,
-        });
+        const audioPlayer = createAudioPlayer();
+        const resource = createAudioResource<{ title: string }>(
+          readableStream,
+          {
+            metadata: {
+              title: title,
+            },
+          }
+        );
 
-        dispatcher.on("finish", () => {
+        const subscription = this.#voiceConnection?.subscribe(audioPlayer);
+        if (!subscription) {
+          console.error("failed to subscribe to voice connection");
           this.#voiceConnection?.disconnect();
+          return;
+        }
+        audioPlayer.play(resource);
+
+        audioPlayer.on(AudioPlayerStatus.Idle, () => {
+          this.#voiceConnection?.disconnect();
+        });
+        audioPlayer.on("error", (error) => {
+          console.error(
+            `Error: ${error.message} with resource ${
+              (error.resource.metadata as any)?.title
+            }`
+          );
         });
       } catch (err) {
         console.log("error playing audio", err);
@@ -273,8 +321,9 @@ export class SquadBot {
         joinChannelAndPlayAudio(
           message.member?.voice.channel,
           "https://i.imgur.com/iAN3UxQ.mp4",
+          "annie",
           {
-            volume: 0.15,
+            volume: 0.23,
           }
         );
       }
@@ -285,8 +334,9 @@ export class SquadBot {
         joinChannelAndPlayAudio(
           message.member?.voice.channel,
           "https://i.imgur.com/2XUwT87.mp4",
+          "karma",
           {
-            volume: 0.17,
+            volume: 0.33,
           }
         );
       }
@@ -297,8 +347,9 @@ export class SquadBot {
         joinChannelAndPlayAudio(
           message.member?.voice.channel,
           "https://i.imgur.com/vZHKUBl.mp4",
+          "cnn",
           {
-            volume: 0.38,
+            volume: 0.75,
           }
         );
       }
@@ -312,11 +363,13 @@ export class SquadBot {
       const randomInteger = (min: number, max: number) =>
         Math.floor(Math.random() * (max - min + 1)) + min;
 
-      message.channel.send(randomInteger(1, 6));
+      if (message.channel.isSendable()) {
+        message.channel.send(randomInteger(1, 6).toString());
+      }
     }
 
-    if (message.content === "!version") {
-      message.channel.send(process.env.GIT_SHA ?? "no version found");
+    if (message.content === "!version" && message.channel.isSendable()) {
+      message.channel.send(process.env.GIT_SHA || "no version found");
     }
 
     const reactToMessageWithSameEmoji = (name: string) => {
@@ -351,7 +404,7 @@ export class SquadBot {
           ? messageA.content
           : "";
 
-      if (value !== "") {
+      if (value !== "" && message.channel.isSendable()) {
         message.channel.send(value);
       }
     }
@@ -359,19 +412,35 @@ export class SquadBot {
 
   #reactionsToMirror: string[] = ["kiwicat", "catcow", "😩"];
 
-  #handleMessageReactionAdd = (reaction: MessageReaction): void => {
-    const mirrorReaction = (reaction: MessageReaction) => {
+  #handleMessageReactionAdd = (
+    reaction: MessageReaction | PartialMessageReaction
+  ): void => {
+    const mirrorReaction = (
+      reaction: MessageReaction | PartialMessageReaction
+    ) => {
       // for custom emojis you must use the id (and actual emojis don't have an id)
-      reaction.message.react(reaction.emoji.id ?? reaction.emoji.name);
+      if (reaction.emoji.id) {
+        reaction.message.react(reaction.emoji.id);
+      } else if (reaction.emoji.name) {
+        reaction.message.react(reaction.emoji.name);
+      }
     };
 
-    if (this.#reactionsToMirror.includes(reaction.emoji.name)) {
+    if (
+      reaction.emoji.name &&
+      this.#reactionsToMirror.includes(reaction.emoji.name)
+    ) {
       mirrorReaction(reaction);
     }
   };
 
-  #handleMessageReactionRemove = (reaction: MessageReaction): void => {
-    if (this.#reactionsToMirror.includes(reaction.emoji.name)) {
+  #handleMessageReactionRemove = (
+    reaction: MessageReaction | PartialMessageReaction
+  ): void => {
+    if (
+      reaction.emoji.name &&
+      this.#reactionsToMirror.includes(reaction.emoji.name)
+    ) {
       // if there's one reaction left and it's SquadBot, then remove it
       if (reaction.count === 1 && reaction.me) {
         reaction.message.reactions.cache

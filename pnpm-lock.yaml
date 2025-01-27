@@ -10,35 +10,41 @@ importers:
     dependencies:
       '@discordjs/opus':
         specifier: 0.9.0
-        version: 0.9.0
+        version: 0.9.0(encoding@0.1.13)
+      '@discordjs/voice':
+        specifier: 0.18.0
+        version: 0.18.0(@discordjs/opus@0.9.0(encoding@0.1.13))(ffmpeg-static@5.2.0)
       canvas:
         specifier: 2.11.2
-        version: 2.11.2
+        version: 2.11.2(encoding@0.1.13)
       chart.js:
         specifier: 2.9.4
         version: 2.9.4
       discord.js:
-        specifier: 12.4.1
-        version: 12.4.1(@discordjs/opus@0.9.0)
+        specifier: 14.17.3
+        version: 14.17.3
       ffmpeg-extract-audio:
         specifier: 1.0.2
         version: 1.0.2
       league-charts:
         specifier: 3.0.1
-        version: 3.0.1(chart.js@2.9.4)
+        version: 3.0.1(chart.js@2.9.4)(encoding@0.1.13)
+      libsodium-wrappers:
+        specifier: 0.7.15
+        version: 0.7.15
     devDependencies:
       '@types/jest':
         specifier: 26.0.15
         version: 26.0.15
       '@types/node':
-        specifier: 14.6.4
-        version: 14.6.4
+        specifier: 22.10.10
+        version: 22.10.10
       '@typescript-eslint/eslint-plugin':
         specifier: 4.7.0
-        version: 4.7.0(@typescript-eslint/parser@4.7.0(eslint@7.11.0)(typescript@4.0.5))(eslint@7.11.0)(typescript@4.0.5)
+        version: 4.7.0(@typescript-eslint/parser@4.7.0(eslint@7.11.0)(typescript@5.7.3))(eslint@7.11.0)(typescript@5.7.3)
       '@typescript-eslint/parser':
         specifier: 4.7.0
-        version: 4.7.0(eslint@7.11.0)(typescript@4.0.5)
+        version: 4.7.0(eslint@7.11.0)(typescript@5.7.3)
       concurrently:
         specifier: 5.3.0
         version: 5.3.0
@@ -47,7 +53,7 @@ importers:
         version: 7.11.0
       jest:
         specifier: 26.6.1
-        version: 26.6.1(canvas@2.11.2)
+        version: 26.6.1(canvas@2.11.2(encoding@0.1.13))
       nodemon:
         specifier: 2.0.6
         version: 2.0.6
@@ -56,10 +62,10 @@ importers:
         version: 2.1.2
       ts-jest:
         specifier: 26.4.4
-        version: 26.4.4(jest@26.6.1(canvas@2.11.2))(typescript@4.0.5)
+        version: 26.4.4(jest@26.6.1(canvas@2.11.2(encoding@0.1.13)))(typescript@5.7.3)
       typescript:
-        specifier: 4.0.5
-        version: 4.0.5
+        specifier: 5.7.3
+        version: 5.7.3
 
 packages:
 
@@ -215,14 +221,25 @@ packages:
     engines: {node: '>=0.1.95'}
     hasBin: true
 
-  '@discordjs/collection@0.1.6':
-    resolution: {integrity: sha512-utRNxnd9kSS2qhyivo9lMlt5qgAUasH2gb7BEOn6p0efFh24gjGomHzWKMAPn2hEReOPQZCJaRKoURwRotKucQ==}
-    deprecated: no longer supported
+  '@derhuerst/http-basic@8.2.4':
+    resolution: {integrity: sha512-F9rL9k9Xjf5blCz8HsJRO4diy111cayL2vkY2XE4r4t3n0yPXVYy3KD3nJ1qbrSn9743UWSXH4IwuCa/HWlGFw==}
+    engines: {node: '>=6.0.0'}
 
-  '@discordjs/form-data@3.0.1':
-    resolution: {integrity: sha512-ZfFsbgEXW71Rw/6EtBdrP5VxBJy4dthyC0tpQKGKmYFImlmmrykO14Za+BiIVduwjte0jXEBlhSKf0MWbFp9Eg==}
-    engines: {node: '>= 6'}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+  '@discordjs/builders@1.10.0':
+    resolution: {integrity: sha512-ikVZsZP+3shmVJ5S1oM+7SveUCK3L9fTyfA8aJ7uD9cNQlTqF+3Irbk2Y22KXTb3C3RNUahRkSInClJMkHrINg==}
+    engines: {node: '>=16.11.0'}
+
+  '@discordjs/collection@1.5.3':
+    resolution: {integrity: sha512-SVb428OMd3WO1paV3rm6tSjM4wC+Kecaa1EUGX7vc6/fddvw/6lg90z4QtCqm21zvVe92vMMDt9+DkIvjXImQQ==}
+    engines: {node: '>=16.11.0'}
+
+  '@discordjs/collection@2.1.1':
+    resolution: {integrity: sha512-LiSusze9Tc7qF03sLCujF5iZp7K+vRNEDBZ86FT9aQAv3vxMLihUvKvpsCWiQ2DJq1tVckopKm1rxomgNUc9hg==}
+    engines: {node: '>=18'}
+
+  '@discordjs/formatters@0.6.0':
+    resolution: {integrity: sha512-YIruKw4UILt/ivO4uISmrGq2GdMY6EkoTtD0oS0GvkJFRZbTSdPhzYiUILbJ/QslsvC9H9nTgGgnarnIl4jMfw==}
+    engines: {node: '>=16.11.0'}
 
   '@discordjs/node-pre-gyp@0.4.5':
     resolution: {integrity: sha512-YJOVVZ545x24mHzANfYoy0BJX5PDyeZlpiJjDkUBM/V/Ao7TFX9lcUvCN4nr0tbr5ubeaXxtEBILUrHtTphVeQ==}
@@ -231,6 +248,22 @@ packages:
   '@discordjs/opus@0.9.0':
     resolution: {integrity: sha512-NEE76A96FtQ5YuoAVlOlB3ryMPrkXbUCTQICHGKb8ShtjXyubGicjRMouHtP1RpuDdm16cDa+oI3aAMo1zQRUQ==}
     engines: {node: '>=12.0.0'}
+
+  '@discordjs/rest@2.4.2':
+    resolution: {integrity: sha512-9bOvXYLQd5IBg/kKGuEFq3cstVxAMJ6wMxO2U3wjrgO+lHv8oNCT+BBRpuzVQh7BoXKvk/gpajceGvQUiRoJ8g==}
+    engines: {node: '>=18'}
+
+  '@discordjs/util@1.1.1':
+    resolution: {integrity: sha512-eddz6UnOBEB1oITPinyrB2Pttej49M9FZQY8NxgEvc3tq6ZICZ19m70RsmzRdDHk80O9NoYN/25AqJl8vPVf/g==}
+    engines: {node: '>=18'}
+
+  '@discordjs/voice@0.18.0':
+    resolution: {integrity: sha512-BvX6+VJE5/vhD9azV9vrZEt9hL1G+GlOdsQaVl5iv9n87fkXjf3cSwllhR3GdaUC8m6dqT8umXIWtn3yCu4afg==}
+    engines: {node: '>=18'}
+
+  '@discordjs/ws@1.2.0':
+    resolution: {integrity: sha512-QH5CAFe3wHDiedbO+EI3OOiyipwWd+Q6BdoFZUw/Wf2fw5Cv2fgU/9UEtJRmJa9RecI+TAhdGPadMaEIur5yJg==}
+    engines: {node: '>=16.11.0'}
 
   '@eslint/eslintrc@0.1.3':
     resolution: {integrity: sha512-4YVwPkANLeNtRjMekzux1ci8hIaH5eGKktGqR0d3LWsKNn5B2X/1Z6Trxy7jQXl9EBGE6Yj02O+t09FMeRllaA==}
@@ -322,6 +355,18 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
+  '@sapphire/async-queue@1.5.5':
+    resolution: {integrity: sha512-cvGzxbba6sav2zZkH8GPf2oGk9yYoD5qrNWdu9fRehifgnFZJMV+nuy2nON2roRO4yQQ+v7MK/Pktl/HgfsUXg==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+
+  '@sapphire/shapeshift@4.0.0':
+    resolution: {integrity: sha512-d9dUmWVA7MMiKobL3VpLF8P2aeanRTu6ypG2OIaEv/ZHH/SUQ2iHOVyi5wAPjQ+HmnMuL0whK9ez8I/raWbtIg==}
+    engines: {node: '>=v16'}
+
+  '@sapphire/snowflake@3.5.3':
+    resolution: {integrity: sha512-jjmJywLAFoWeBi1W7994zZyiNWPIiqRRNAmSERxyg93xRGzNYvGjlZ0gR6x0F4gPRi2+0O6S71kOZYyr3cxaIQ==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+
   '@sindresorhus/is@0.14.0':
     resolution: {integrity: sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ==}
     engines: {node: '>=6'}
@@ -376,8 +421,11 @@ packages:
   '@types/keyv@3.1.4':
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
 
-  '@types/node@14.6.4':
-    resolution: {integrity: sha512-Wk7nG1JSaMfMpoMJDKUsWYugliB2Vy55pdjLpmLixeyMi7HizW2I/9QoxsPCkXl3dO+ZOVqPumKaDUv5zJu2uQ==}
+  '@types/node@10.17.60':
+    resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
+
+  '@types/node@22.10.10':
+    resolution: {integrity: sha512-X47y/mPNzxviAGY5TcYPtYL8JsY3kAq2n8fMmKoRCxq/c4v4pyGNCzM2R6+M5/umG4ZfHuT+sgqDYqWc9rJ6ww==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -390,6 +438,9 @@ packages:
 
   '@types/stack-utils@2.0.3':
     resolution: {integrity: sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==}
+
+  '@types/ws@8.5.14':
+    resolution: {integrity: sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw==}
 
   '@types/yargs-parser@21.0.3':
     resolution: {integrity: sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==}
@@ -445,16 +496,16 @@ packages:
     resolution: {integrity: sha512-aDJDWuCRsf1lXOtignlfiPODkzSxxop7D0rZ91L6ZuMlcMCSh0YyK+gAfo5zN/ih6WxMwhoXgJWC3cWQdaKC+A==}
     engines: {node: ^8.10.0 || ^10.13.0 || >=11.10.1}
 
+  '@vladfrangu/async_event_emitter@2.4.6':
+    resolution: {integrity: sha512-RaI5qZo6D2CVS6sTHFKg1v5Ohq/+Bo2LZ5gzUEwZ/WkHhwtGTCB/sVLw8ijOkAUxasZ+WshN/Rzj4ywsABJ5ZA==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+
   abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
     deprecated: Use your platform's native atob() and btoa() methods instead
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
-
-  abort-controller@3.0.0:
-    resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
-    engines: {node: '>=6.5'}
 
   acorn-globals@6.0.0:
     resolution: {integrity: sha512-ZQl7LOWaF5ePqqcX4hLuv/bLXYQNfNWw2c0/yX/TsPRKamzHcTGQnlCjHT3TsmkOUVEPS3crCxiPfdzE/Trlhg==}
@@ -680,6 +731,9 @@ packages:
     resolution: {integrity: sha512-PiT/hQmTonHhl/HFGN+Lx3JJUznrVYJ3+AQsnthneZbvW7x+f08Tk7yLJTLEOUvBTbduLeeBkxEaYXUOUrRq6g==}
     engines: {node: 6.* || 8.* || >= 10.*}
 
+  caseless@0.12.0:
+    resolution: {integrity: sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw==}
+
   chalk@2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
     engines: {node: '>=4'}
@@ -779,6 +833,10 @@ packages:
 
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+
+  concat-stream@2.0.0:
+    resolution: {integrity: sha512-MWufYdFw53ccGjCA+Ol7XJYpAlW6/prSMzuPOTRnJGcGzuhLn4Scrz7qf6o8bROZ514ltazcIFJZevcfbo0x7A==}
+    engines: {'0': node >= 6.0}
 
   concurrently@5.3.0:
     resolution: {integrity: sha512-8MhqOB6PWlBfA2vJ8a0bSFKATOdWlHiQlk11IfmQBPaHVP8oP2gsh2MObE6UR3hqDHqvaIvLTyceNW6obVuFHQ==}
@@ -928,10 +986,12 @@ packages:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
 
-  discord.js@12.4.1:
-    resolution: {integrity: sha512-KxOB8LOAN3GmrvkD6a6Fr1nlfArIFZ+q7Uqg4T/5duB90GZy9a0/Py2E+Y+eHKP6ZUCR2mbNMLCcHGjahiaNqA==}
-    engines: {node: '>=12.0.0'}
-    deprecated: no longer supported
+  discord-api-types@0.37.117:
+    resolution: {integrity: sha512-d+Z6RKd7v3q22lsil7yASucqMfVVV0s0XSqu3cw7kyHVXiDO/mAnqMzqma26IYnIm2mk3TlupYJDGrdL908ZKA==}
+
+  discord.js@14.17.3:
+    resolution: {integrity: sha512-8/j8udc3CU7dz3Eqch64UaSHoJtUT6IXK4da5ixjbav4NAXJicloWswD/iwn1ImZEMoAV3LscsdO0zhBh6H+0Q==}
+    engines: {node: '>=18'}
 
   doctrine@3.0.0:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
@@ -962,12 +1022,19 @@ packages:
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
 
+  encoding@0.1.13:
+    resolution: {integrity: sha512-ETBauow1T35Y/WZMkio9jiM0Z5xjHHmJ4XmjZOq1l/dXz3lr2sRn87nJy20RupqSh1F2m3HHPSp8ShIPQJrJ3A==}
+
   end-of-stream@1.4.4:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
 
   enquirer@2.4.1:
     resolution: {integrity: sha512-rRqJg/6gd538VHvR3PSrdRBb/1Vy2YfzHqzvbhGIQpDRKIa4FgV/54b5Q1xYSxOOwKvjXweS26E0Q+nAMwp2pQ==}
     engines: {node: '>=8.6'}
+
+  env-paths@2.2.1:
+    resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
+    engines: {node: '>=6'}
 
   error-ex@1.3.2:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
@@ -1043,10 +1110,6 @@ packages:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
     engines: {node: '>=0.10.0'}
 
-  event-target-shim@5.0.1:
-    resolution: {integrity: sha512-i/2XbnSz/uxRCU6+NdVJgKWDTM427+MqYbkQzD321DuCQJUqOuJKIA0IM2+W2xtYHdKOmZ4dR6fExsd4SXL+WQ==}
-    engines: {node: '>=6'}
-
   exec-sh@0.3.6:
     resolution: {integrity: sha512-nQn+hI3yp+oD0huYhKwvYI32+JFeq+XkNcD1GAo3Y/MjxsfVGmrrzrnzjWiNY6f+pUCP440fThsFh5gZrRAU/w==}
 
@@ -1104,6 +1167,10 @@ packages:
   ffmpeg-extract-audio@1.0.2:
     resolution: {integrity: sha512-JWqL7kDfN7suNiLWLwIqUOGSTQlR+AIPEsHK2aFP7a1pHt3nk4+WXtgptqOa852fXhJMkJHxL1+lcuDZbWXFAw==}
     engines: {node: '>= 4'}
+
+  ffmpeg-static@5.2.0:
+    resolution: {integrity: sha512-WrM7kLW+do9HLr+H6tk7LzQ7kPqbAgLjdzNE32+u3Ff11gXt9Kkkd2nusGFrlWMIe+XaA97t+I8JS7sZIrvRgA==}
+    engines: {node: '>=16'}
 
   file-entry-cache@5.0.1:
     resolution: {integrity: sha512-bCg29ictuBaKUwwArK4ouCaqDgLZcysCFLmM/Yn/FDoqndh/9vNuQfXRDvTuXKLxfD/JtZQGKFT8MGcJBK644g==}
@@ -1290,6 +1357,9 @@ packages:
     resolution: {integrity: sha512-k0zdNgqWTGA6aeIRVpvfVob4fL52dTfaehylg0Y4UvSySvOq/Y+BOyPrgpUrA7HylqvU8vIZGsRuXmspskV0Tg==}
     engines: {node: '>= 6'}
 
+  http-response-object@3.0.2:
+    resolution: {integrity: sha512-bqX0XTF6fnXSQcEJ2Iuyr75yVakyjIDCqroJQ/aHfSdlM743Cwqoi2nDYMzLGWUcuTWGWy8AAvOKXTfiv6q9RA==}
+
   https-proxy-agent@5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
@@ -1300,6 +1370,10 @@ packages:
 
   iconv-lite@0.4.24:
     resolution: {integrity: sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==}
+    engines: {node: '>=0.10.0'}
+
+  iconv-lite@0.6.3:
+    resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
 
   ignore-by-default@1.0.1:
@@ -1703,6 +1777,12 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
+  libsodium-wrappers@0.7.15:
+    resolution: {integrity: sha512-E4anqJQwcfiC6+Yrl01C1m8p99wEhLmJSs0VQqST66SbQXXBoaJY0pF4BNjRYa/sOQAxx6lXAaAFIlx+15tXJQ==}
+
+  libsodium@0.7.15:
+    resolution: {integrity: sha512-sZwRknt/tUpE2AwzHq3jEyUU5uvIZHtSssktXq7owd++3CSgn8RGrv6UZJJBpP7+iBghBqe7Z06/2M31rI2NKw==}
+
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
@@ -1717,6 +1797,9 @@ packages:
   lodash.memoize@4.1.2:
     resolution: {integrity: sha512-t7j+NzmgnQzTAYXcsHYLgimltOV1MXHtlOWf6GjL9Kj8GK5FInw5JotxvbOs+IvV1/Dzo04/fCGfLVs7aXb4Ag==}
 
+  lodash.snakecase@4.1.1:
+    resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}
+
   lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
@@ -1730,6 +1813,9 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  magic-bytes.js@1.10.0:
+    resolution: {integrity: sha512-/k20Lg2q8LE5xiaaSkMXk4sfvI+9EGEykFS4b0CHHGWqDYU0bGUFSwchNOMA56D7TCs9GwVTkqe9als1/ns8UQ==}
 
   make-dir@3.1.0:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
@@ -1970,6 +2056,9 @@ packages:
   parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
     engines: {node: '>=6'}
+
+  parse-cache-control@1.0.1:
+    resolution: {integrity: sha512-60zvsJReQPX5/QP0Kzfd/VrpjScIQ7SHBW6bFCYfEP+fp0Eppr1SHhIO5nd1PjZtvclzSzES9D/p5nFJurwfWg==}
 
   parse-json@4.0.0:
     resolution: {integrity: sha512-aOIos8bujGN93/8Ox/jPLh7RwVnPEysynVFE+fQZyg6jKELEHwzgKdLRFHUgXJL6kylijVSBC4BvN9OmsB48Rw==}
@@ -2267,9 +2356,6 @@ packages:
     resolution: {integrity: sha512-JxHc1weCN68wRY0fhCoXpyK55m/XPHafOmK4UWD7m2CI14GMcFypt4w/0+NV5f/ZMby2F6S2wwA7fgynh9gWSw==}
     engines: {node: '>=0.10.0'}
 
-  setimmediate@1.0.5:
-    resolution: {integrity: sha512-MATJdZp8sLqDl/68LfQmbP8zKPLQNV6BIZoIgrscFDQ+RsvK/BxeDQOgyxKKoh0y/8h3BqVFnCqQ/gd+reiIXA==}
-
   shebang-command@1.2.0:
     resolution: {integrity: sha512-EV3L1+UQWGor21OmnvojK36mhg+TyIKDh3iFBKBohr5xeXIhNBcx8oWdgkTEEQ+BEFFYdLRuqMfd5L84N1V5Vg==}
     engines: {node: '>=0.10.0'}
@@ -2520,17 +2606,20 @@ packages:
       jest: '>=26 <27'
       typescript: '>=3.8 <5.0'
 
+  ts-mixer@6.0.4:
+    resolution: {integrity: sha512-ufKpbmrugz5Aou4wcr5Wc1UUFWOLhq+Fm6qa6P0w0K5Qw2yhaUoiWszhCVuNQyNwrlGiscHOmqYoAox1PtvgjA==}
+
   tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
   tsutils@3.21.0:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
     engines: {node: '>= 6'}
     peerDependencies:
       typescript: '>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta'
-
-  tweetnacl@1.0.3:
-    resolution: {integrity: sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -2555,13 +2644,23 @@ packages:
   typedarray-to-buffer@3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
 
-  typescript@4.0.5:
-    resolution: {integrity: sha512-ywmr/VrTVCmNTJ6iV2LwIrfG1P+lv6luD8sUJs+2eI9NLGigaN+nUQc13iHqisq7bra9lnmUSYqbJvegraBOPQ==}
-    engines: {node: '>=4.2.0'}
+  typedarray@0.0.6:
+    resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
+
+  typescript@5.7.3:
+    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
+    engines: {node: '>=14.17'}
     hasBin: true
 
   undefsafe@2.0.5:
     resolution: {integrity: sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==}
+
+  undici-types@6.20.0:
+    resolution: {integrity: sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==}
+
+  undici@6.19.8:
+    resolution: {integrity: sha512-U8uCCl2x9TK3WANvmBavymRzxbfFYG+tAu+fgx3zxQy3qdagQqBLwJVrdyO1TBfUXvfKveMKJZhpvUYoOjM+4g==}
+    engines: {node: '>=18.17'}
 
   union-value@1.0.1:
     resolution: {integrity: sha512-tJfXmxMeWYnczCVs7XAEvIV7ieppALdyepWMkHkwciRpZraG/xwT+s2JN8+pr1+8jCRf80FFzvr+MpQeeoF4Xg==}
@@ -2706,6 +2805,18 @@ packages:
     peerDependencies:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+
+  ws@8.18.0:
+    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
     peerDependenciesMeta:
       bufferutil:
         optional: true
@@ -2941,20 +3052,38 @@ snapshots:
       exec-sh: 0.3.6
       minimist: 1.2.8
 
-  '@discordjs/collection@0.1.6': {}
-
-  '@discordjs/form-data@3.0.1':
+  '@derhuerst/http-basic@8.2.4':
     dependencies:
-      asynckit: 0.4.0
-      combined-stream: 1.0.8
-      mime-types: 2.1.35
+      caseless: 0.12.0
+      concat-stream: 2.0.0
+      http-response-object: 3.0.2
+      parse-cache-control: 1.0.1
+    optional: true
 
-  '@discordjs/node-pre-gyp@0.4.5':
+  '@discordjs/builders@1.10.0':
+    dependencies:
+      '@discordjs/formatters': 0.6.0
+      '@discordjs/util': 1.1.1
+      '@sapphire/shapeshift': 4.0.0
+      discord-api-types: 0.37.117
+      fast-deep-equal: 3.1.3
+      ts-mixer: 6.0.4
+      tslib: 2.8.1
+
+  '@discordjs/collection@1.5.3': {}
+
+  '@discordjs/collection@2.1.1': {}
+
+  '@discordjs/formatters@0.6.0':
+    dependencies:
+      discord-api-types: 0.37.117
+
+  '@discordjs/node-pre-gyp@0.4.5(encoding@0.1.13)':
     dependencies:
       detect-libc: 2.0.3
       https-proxy-agent: 5.0.1
       make-dir: 3.1.0
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
@@ -2964,13 +3093,57 @@ snapshots:
       - encoding
       - supports-color
 
-  '@discordjs/opus@0.9.0':
+  '@discordjs/opus@0.9.0(encoding@0.1.13)':
     dependencies:
-      '@discordjs/node-pre-gyp': 0.4.5
+      '@discordjs/node-pre-gyp': 0.4.5(encoding@0.1.13)
       node-addon-api: 5.1.0
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  '@discordjs/rest@2.4.2':
+    dependencies:
+      '@discordjs/collection': 2.1.1
+      '@discordjs/util': 1.1.1
+      '@sapphire/async-queue': 1.5.5
+      '@sapphire/snowflake': 3.5.3
+      '@vladfrangu/async_event_emitter': 2.4.6
+      discord-api-types: 0.37.117
+      magic-bytes.js: 1.10.0
+      tslib: 2.8.1
+      undici: 6.19.8
+
+  '@discordjs/util@1.1.1': {}
+
+  '@discordjs/voice@0.18.0(@discordjs/opus@0.9.0(encoding@0.1.13))(ffmpeg-static@5.2.0)':
+    dependencies:
+      '@types/ws': 8.5.14
+      discord-api-types: 0.37.117
+      prism-media: 1.3.5(@discordjs/opus@0.9.0(encoding@0.1.13))(ffmpeg-static@5.2.0)
+      tslib: 2.8.1
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - '@discordjs/opus'
+      - bufferutil
+      - ffmpeg-static
+      - node-opus
+      - opusscript
+      - utf-8-validate
+
+  '@discordjs/ws@1.2.0':
+    dependencies:
+      '@discordjs/collection': 2.1.1
+      '@discordjs/rest': 2.4.2
+      '@discordjs/util': 1.1.1
+      '@sapphire/async-queue': 1.5.5
+      '@types/ws': 8.5.14
+      '@vladfrangu/async_event_emitter': 2.4.6
+      discord-api-types: 0.37.117
+      tslib: 2.8.1
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@eslint/eslintrc@0.1.3':
     dependencies:
@@ -3000,33 +3173,33 @@ snapshots:
   '@jest/console@26.6.2':
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       chalk: 4.1.2
       jest-message-util: 26.6.2
       jest-util: 26.6.2
       slash: 3.0.0
 
-  '@jest/core@26.6.3(canvas@2.11.2)':
+  '@jest/core@26.6.3(canvas@2.11.2(encoding@0.1.13))':
     dependencies:
       '@jest/console': 26.6.2
       '@jest/reporters': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/transform': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-changed-files: 26.6.2
-      jest-config: 26.6.3(canvas@2.11.2)
+      jest-config: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-haste-map: 26.6.2
       jest-message-util: 26.6.2
       jest-regex-util: 26.0.0
       jest-resolve: 26.6.2
       jest-resolve-dependencies: 26.6.3
-      jest-runner: 26.6.3(canvas@2.11.2)
-      jest-runtime: 26.6.3(canvas@2.11.2)
+      jest-runner: 26.6.3(canvas@2.11.2(encoding@0.1.13))
+      jest-runtime: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-snapshot: 26.6.2
       jest-util: 26.6.2
       jest-validate: 26.6.2
@@ -3047,14 +3220,14 @@ snapshots:
     dependencies:
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       jest-mock: 26.6.2
 
   '@jest/fake-timers@26.6.2':
     dependencies:
       '@jest/types': 26.6.2
       '@sinonjs/fake-timers': 6.0.1
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       jest-message-util: 26.6.2
       jest-mock: 26.6.2
       jest-util: 26.6.2
@@ -3109,13 +3282,13 @@ snapshots:
       '@types/istanbul-lib-coverage': 2.0.6
       collect-v8-coverage: 1.0.2
 
-  '@jest/test-sequencer@26.6.3(canvas@2.11.2)':
+  '@jest/test-sequencer@26.6.3(canvas@2.11.2(encoding@0.1.13))':
     dependencies:
       '@jest/test-result': 26.6.2
       graceful-fs: 4.2.11
       jest-haste-map: 26.6.2
-      jest-runner: 26.6.3(canvas@2.11.2)
-      jest-runtime: 26.6.3(canvas@2.11.2)
+      jest-runner: 26.6.3(canvas@2.11.2(encoding@0.1.13))
+      jest-runtime: 26.6.3(canvas@2.11.2(encoding@0.1.13))
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -3147,7 +3320,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       '@types/yargs': 15.0.19
       chalk: 4.1.2
 
@@ -3168,12 +3341,12 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@mapbox/node-pre-gyp@1.0.11':
+  '@mapbox/node-pre-gyp@1.0.11(encoding@0.1.13)':
     dependencies:
       detect-libc: 2.0.3
       https-proxy-agent: 5.0.1
       make-dir: 3.1.0
-      node-fetch: 2.7.0
+      node-fetch: 2.7.0(encoding@0.1.13)
       nopt: 5.0.0
       npmlog: 5.0.1
       rimraf: 3.0.2
@@ -3194,6 +3367,15 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+
+  '@sapphire/async-queue@1.5.5': {}
+
+  '@sapphire/shapeshift@4.0.0':
+    dependencies:
+      fast-deep-equal: 3.1.3
+      lodash: 4.17.21
+
+  '@sapphire/snowflake@3.5.3': {}
 
   '@sindresorhus/is@0.14.0': {}
 
@@ -3238,7 +3420,7 @@ snapshots:
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -3259,9 +3441,14 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
 
-  '@types/node@14.6.4': {}
+  '@types/node@10.17.60':
+    optional: true
+
+  '@types/node@22.10.10':
+    dependencies:
+      undici-types: 6.20.0
 
   '@types/normalize-package-data@2.4.4': {}
 
@@ -3269,9 +3456,13 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
 
   '@types/stack-utils@2.0.3': {}
+
+  '@types/ws@8.5.14':
+    dependencies:
+      '@types/node': 22.10.10
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -3279,28 +3470,28 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@typescript-eslint/eslint-plugin@4.7.0(@typescript-eslint/parser@4.7.0(eslint@7.11.0)(typescript@4.0.5))(eslint@7.11.0)(typescript@4.0.5)':
+  '@typescript-eslint/eslint-plugin@4.7.0(@typescript-eslint/parser@4.7.0(eslint@7.11.0)(typescript@5.7.3))(eslint@7.11.0)(typescript@5.7.3)':
     dependencies:
-      '@typescript-eslint/experimental-utils': 4.7.0(eslint@7.11.0)(typescript@4.0.5)
-      '@typescript-eslint/parser': 4.7.0(eslint@7.11.0)(typescript@4.0.5)
+      '@typescript-eslint/experimental-utils': 4.7.0(eslint@7.11.0)(typescript@5.7.3)
+      '@typescript-eslint/parser': 4.7.0(eslint@7.11.0)(typescript@5.7.3)
       '@typescript-eslint/scope-manager': 4.7.0
       debug: 4.3.6
       eslint: 7.11.0
       functional-red-black-tree: 1.0.1
       regexpp: 3.2.0
       semver: 7.6.3
-      tsutils: 3.21.0(typescript@4.0.5)
+      tsutils: 3.21.0(typescript@5.7.3)
     optionalDependencies:
-      typescript: 4.0.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/experimental-utils@4.7.0(eslint@7.11.0)(typescript@4.0.5)':
+  '@typescript-eslint/experimental-utils@4.7.0(eslint@7.11.0)(typescript@5.7.3)':
     dependencies:
       '@types/json-schema': 7.0.15
       '@typescript-eslint/scope-manager': 4.7.0
       '@typescript-eslint/types': 4.7.0
-      '@typescript-eslint/typescript-estree': 4.7.0(typescript@4.0.5)
+      '@typescript-eslint/typescript-estree': 4.7.0(typescript@5.7.3)
       eslint: 7.11.0
       eslint-scope: 5.1.1
       eslint-utils: 2.1.0
@@ -3308,15 +3499,15 @@ snapshots:
       - supports-color
       - typescript
 
-  '@typescript-eslint/parser@4.7.0(eslint@7.11.0)(typescript@4.0.5)':
+  '@typescript-eslint/parser@4.7.0(eslint@7.11.0)(typescript@5.7.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 4.7.0
       '@typescript-eslint/types': 4.7.0
-      '@typescript-eslint/typescript-estree': 4.7.0(typescript@4.0.5)
+      '@typescript-eslint/typescript-estree': 4.7.0(typescript@5.7.3)
       debug: 4.3.6
       eslint: 7.11.0
     optionalDependencies:
-      typescript: 4.0.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -3327,7 +3518,7 @@ snapshots:
 
   '@typescript-eslint/types@4.7.0': {}
 
-  '@typescript-eslint/typescript-estree@4.7.0(typescript@4.0.5)':
+  '@typescript-eslint/typescript-estree@4.7.0(typescript@5.7.3)':
     dependencies:
       '@typescript-eslint/types': 4.7.0
       '@typescript-eslint/visitor-keys': 4.7.0
@@ -3336,9 +3527,9 @@ snapshots:
       is-glob: 4.0.3
       lodash: 4.17.21
       semver: 7.6.3
-      tsutils: 3.21.0(typescript@4.0.5)
+      tsutils: 3.21.0(typescript@5.7.3)
     optionalDependencies:
-      typescript: 4.0.5
+      typescript: 5.7.3
     transitivePeerDependencies:
       - supports-color
 
@@ -3347,13 +3538,11 @@ snapshots:
       '@typescript-eslint/types': 4.7.0
       eslint-visitor-keys: 2.1.0
 
+  '@vladfrangu/async_event_emitter@2.4.6': {}
+
   abab@2.0.6: {}
 
   abbrev@1.1.1: {}
-
-  abort-controller@3.0.0:
-    dependencies:
-      event-target-shim: 5.0.1
 
   acorn-globals@6.0.0:
     dependencies:
@@ -3613,9 +3802,9 @@ snapshots:
 
   caniuse-lite@1.0.30001643: {}
 
-  canvas@2.11.2:
+  canvas@2.11.2(encoding@0.1.13):
     dependencies:
-      '@mapbox/node-pre-gyp': 1.0.11
+      '@mapbox/node-pre-gyp': 1.0.11(encoding@0.1.13)
       nan: 2.20.0
       simple-get: 3.1.1
     transitivePeerDependencies:
@@ -3625,6 +3814,9 @@ snapshots:
   capture-exit@2.0.0:
     dependencies:
       rsvp: 4.8.5
+
+  caseless@0.12.0:
+    optional: true
 
   chalk@2.4.2:
     dependencies:
@@ -3735,6 +3927,14 @@ snapshots:
   component-emitter@1.3.1: {}
 
   concat-map@0.0.1: {}
+
+  concat-stream@2.0.0:
+    dependencies:
+      buffer-from: 1.1.2
+      inherits: 2.0.4
+      readable-stream: 3.6.2
+      typedarray: 0.0.6
+    optional: true
 
   concurrently@5.3.0:
     dependencies:
@@ -3864,23 +4064,24 @@ snapshots:
     dependencies:
       path-type: 4.0.0
 
-  discord.js@12.4.1(@discordjs/opus@0.9.0):
+  discord-api-types@0.37.117: {}
+
+  discord.js@14.17.3:
     dependencies:
-      '@discordjs/collection': 0.1.6
-      '@discordjs/form-data': 3.0.1
-      abort-controller: 3.0.0
-      node-fetch: 2.7.0
-      prism-media: 1.3.5(@discordjs/opus@0.9.0)
-      setimmediate: 1.0.5
-      tweetnacl: 1.0.3
-      ws: 7.5.10
+      '@discordjs/builders': 1.10.0
+      '@discordjs/collection': 1.5.3
+      '@discordjs/formatters': 0.6.0
+      '@discordjs/rest': 2.4.2
+      '@discordjs/util': 1.1.1
+      '@discordjs/ws': 1.2.0
+      '@sapphire/snowflake': 3.5.3
+      discord-api-types: 0.37.117
+      fast-deep-equal: 3.1.3
+      lodash.snakecase: 4.1.1
+      tslib: 2.8.1
+      undici: 6.19.8
     transitivePeerDependencies:
-      - '@discordjs/opus'
       - bufferutil
-      - encoding
-      - ffmpeg-static
-      - node-opus
-      - opusscript
       - utf-8-validate
 
   doctrine@3.0.0:
@@ -3905,6 +4106,11 @@ snapshots:
 
   emoji-regex@8.0.0: {}
 
+  encoding@0.1.13:
+    dependencies:
+      iconv-lite: 0.6.3
+    optional: true
+
   end-of-stream@1.4.4:
     dependencies:
       once: 1.4.0
@@ -3913,6 +4119,9 @@ snapshots:
     dependencies:
       ansi-colors: 4.1.3
       strip-ansi: 6.0.1
+
+  env-paths@2.2.1:
+    optional: true
 
   error-ex@1.3.2:
     dependencies:
@@ -4011,8 +4220,6 @@ snapshots:
 
   esutils@2.0.3: {}
 
-  event-target-shim@5.0.1: {}
-
   exec-sh@0.3.6: {}
 
   execa@1.0.0:
@@ -4107,6 +4314,16 @@ snapshots:
   ffmpeg-extract-audio@1.0.2:
     dependencies:
       fluent-ffmpeg: 2.1.3
+
+  ffmpeg-static@5.2.0:
+    dependencies:
+      '@derhuerst/http-basic': 8.2.4
+      env-paths: 2.2.1
+      https-proxy-agent: 5.0.1
+      progress: 2.0.3
+    transitivePeerDependencies:
+      - supports-color
+    optional: true
 
   file-entry-cache@5.0.1:
     dependencies:
@@ -4302,6 +4519,11 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  http-response-object@3.0.2:
+    dependencies:
+      '@types/node': 10.17.60
+    optional: true
+
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
@@ -4314,6 +4536,11 @@ snapshots:
   iconv-lite@0.4.24:
     dependencies:
       safer-buffer: 2.1.2
+
+  iconv-lite@0.6.3:
+    dependencies:
+      safer-buffer: 2.1.2
+    optional: true
 
   ignore-by-default@1.0.1: {}
 
@@ -4495,9 +4722,9 @@ snapshots:
       execa: 4.1.0
       throat: 5.0.0
 
-  jest-cli@26.6.3(canvas@2.11.2):
+  jest-cli@26.6.3(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
-      '@jest/core': 26.6.3(canvas@2.11.2)
+      '@jest/core': 26.6.3(canvas@2.11.2(encoding@0.1.13))
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
       chalk: 4.1.2
@@ -4505,7 +4732,7 @@ snapshots:
       graceful-fs: 4.2.11
       import-local: 3.2.0
       is-ci: 2.0.0
-      jest-config: 26.6.3(canvas@2.11.2)
+      jest-config: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-util: 26.6.2
       jest-validate: 26.6.2
       prompts: 2.4.2
@@ -4517,20 +4744,20 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest-config@26.6.3(canvas@2.11.2):
+  jest-config@26.6.3(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
       '@babel/core': 7.24.9
-      '@jest/test-sequencer': 26.6.3(canvas@2.11.2)
+      '@jest/test-sequencer': 26.6.3(canvas@2.11.2(encoding@0.1.13))
       '@jest/types': 26.6.2
       babel-jest: 26.6.3(@babel/core@7.24.9)
       chalk: 4.1.2
       deepmerge: 4.3.1
       glob: 7.2.3
       graceful-fs: 4.2.11
-      jest-environment-jsdom: 26.6.2(canvas@2.11.2)
+      jest-environment-jsdom: 26.6.2(canvas@2.11.2(encoding@0.1.13))
       jest-environment-node: 26.6.2
       jest-get-type: 26.3.0
-      jest-jasmine2: 26.6.3(canvas@2.11.2)
+      jest-jasmine2: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-regex-util: 26.0.0
       jest-resolve: 26.6.2
       jest-util: 26.6.2
@@ -4562,15 +4789,15 @@ snapshots:
       jest-util: 26.6.2
       pretty-format: 26.6.2
 
-  jest-environment-jsdom@26.6.2(canvas@2.11.2):
+  jest-environment-jsdom@26.6.2(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       jest-mock: 26.6.2
       jest-util: 26.6.2
-      jsdom: 16.7.0(canvas@2.11.2)
+      jsdom: 16.7.0(canvas@2.11.2(encoding@0.1.13))
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -4582,7 +4809,7 @@ snapshots:
       '@jest/environment': 26.6.2
       '@jest/fake-timers': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       jest-mock: 26.6.2
       jest-util: 26.6.2
 
@@ -4592,7 +4819,7 @@ snapshots:
     dependencies:
       '@jest/types': 26.6.2
       '@types/graceful-fs': 4.1.9
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -4608,14 +4835,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jest-jasmine2@26.6.3(canvas@2.11.2):
+  jest-jasmine2@26.6.3(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
       '@babel/traverse': 7.25.0
       '@jest/environment': 26.6.2
       '@jest/source-map': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       chalk: 4.1.2
       co: 4.6.0
       expect: 26.6.2
@@ -4623,7 +4850,7 @@ snapshots:
       jest-each: 26.6.2
       jest-matcher-utils: 26.6.2
       jest-message-util: 26.6.2
-      jest-runtime: 26.6.3(canvas@2.11.2)
+      jest-runtime: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-snapshot: 26.6.2
       jest-util: 26.6.2
       pretty-format: 26.6.2
@@ -4662,7 +4889,7 @@ snapshots:
   jest-mock@26.6.2:
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
 
   jest-pnp-resolver@1.2.3(jest-resolve@26.6.2):
     optionalDependencies:
@@ -4689,24 +4916,24 @@ snapshots:
       resolve: 1.22.8
       slash: 3.0.0
 
-  jest-runner@26.6.3(canvas@2.11.2):
+  jest-runner@26.6.3(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
       '@jest/console': 26.6.2
       '@jest/environment': 26.6.2
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       chalk: 4.1.2
       emittery: 0.7.2
       exit: 0.1.2
       graceful-fs: 4.2.11
-      jest-config: 26.6.3(canvas@2.11.2)
+      jest-config: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-docblock: 26.0.0
       jest-haste-map: 26.6.2
       jest-leak-detector: 26.6.2
       jest-message-util: 26.6.2
       jest-resolve: 26.6.2
-      jest-runtime: 26.6.3(canvas@2.11.2)
+      jest-runtime: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-util: 26.6.2
       jest-worker: 26.6.2
       source-map-support: 0.5.21
@@ -4718,7 +4945,7 @@ snapshots:
       - ts-node
       - utf-8-validate
 
-  jest-runtime@26.6.3(canvas@2.11.2):
+  jest-runtime@26.6.3(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
       '@jest/console': 26.6.2
       '@jest/environment': 26.6.2
@@ -4735,7 +4962,7 @@ snapshots:
       exit: 0.1.2
       glob: 7.2.3
       graceful-fs: 4.2.11
-      jest-config: 26.6.3(canvas@2.11.2)
+      jest-config: 26.6.3(canvas@2.11.2(encoding@0.1.13))
       jest-haste-map: 26.6.2
       jest-message-util: 26.6.2
       jest-mock: 26.6.2
@@ -4756,7 +4983,7 @@ snapshots:
 
   jest-serializer@26.6.2:
     dependencies:
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       graceful-fs: 4.2.11
 
   jest-snapshot@26.6.2:
@@ -4783,7 +5010,7 @@ snapshots:
   jest-util@26.6.2:
     dependencies:
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       chalk: 4.1.2
       graceful-fs: 4.2.11
       is-ci: 2.0.0
@@ -4802,7 +5029,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 26.6.2
       '@jest/types': 26.6.2
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       jest-util: 26.6.2
@@ -4810,15 +5037,15 @@ snapshots:
 
   jest-worker@26.6.2:
     dependencies:
-      '@types/node': 14.6.4
+      '@types/node': 22.10.10
       merge-stream: 2.0.0
       supports-color: 7.2.0
 
-  jest@26.6.1(canvas@2.11.2):
+  jest@26.6.1(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
-      '@jest/core': 26.6.3(canvas@2.11.2)
+      '@jest/core': 26.6.3(canvas@2.11.2(encoding@0.1.13))
       import-local: 3.2.0
-      jest-cli: 26.6.3(canvas@2.11.2)
+      jest-cli: 26.6.3(canvas@2.11.2(encoding@0.1.13))
     transitivePeerDependencies:
       - bufferutil
       - canvas
@@ -4833,7 +5060,7 @@ snapshots:
       argparse: 1.0.10
       esprima: 4.0.1
 
-  jsdom@16.7.0(canvas@2.11.2):
+  jsdom@16.7.0(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
       abab: 2.0.6
       acorn: 8.12.1
@@ -4863,7 +5090,7 @@ snapshots:
       ws: 7.5.10
       xml-name-validator: 3.0.0
     optionalDependencies:
-      canvas: 2.11.2
+      canvas: 2.11.2(encoding@0.1.13)
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -4903,12 +5130,12 @@ snapshots:
     dependencies:
       package-json: 6.5.0
 
-  league-charts@3.0.1(chart.js@2.9.4):
+  league-charts@3.0.1(chart.js@2.9.4)(encoding@0.1.13):
     dependencies:
       '@types/chart.js': 2.9.41
       axios: 0.24.0
       axios-cache-adapter: 2.7.3(axios@0.24.0)
-      canvas: 2.11.2
+      canvas: 2.11.2(encoding@0.1.13)
       chart.js: 2.9.4
       comma-number: 2.1.0
       parse-ms: 2.1.0
@@ -4924,6 +5151,12 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
+  libsodium-wrappers@0.7.15:
+    dependencies:
+      libsodium: 0.7.15
+
+  libsodium@0.7.15: {}
+
   lines-and-columns@1.2.4: {}
 
   locate-path@3.0.0:
@@ -4937,6 +5170,8 @@ snapshots:
 
   lodash.memoize@4.1.2: {}
 
+  lodash.snakecase@4.1.1: {}
+
   lodash@4.17.21: {}
 
   lowercase-keys@1.0.1: {}
@@ -4946,6 +5181,8 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  magic-bytes.js@1.10.0: {}
 
   make-dir@3.1.0:
     dependencies:
@@ -5072,9 +5309,11 @@ snapshots:
 
   node-addon-api@5.1.0: {}
 
-  node-fetch@2.7.0:
+  node-fetch@2.7.0(encoding@0.1.13):
     dependencies:
       whatwg-url: 5.0.0
+    optionalDependencies:
+      encoding: 0.1.13
 
   node-int64@0.4.0: {}
 
@@ -5203,6 +5442,9 @@ snapshots:
     dependencies:
       callsites: 3.1.0
 
+  parse-cache-control@1.0.1:
+    optional: true
+
   parse-json@4.0.0:
     dependencies:
       error-ex: 1.3.2
@@ -5262,9 +5504,10 @@ snapshots:
       ansi-styles: 4.3.0
       react-is: 17.0.2
 
-  prism-media@1.3.5(@discordjs/opus@0.9.0):
+  prism-media@1.3.5(@discordjs/opus@0.9.0(encoding@0.1.13))(ffmpeg-static@5.2.0):
     optionalDependencies:
-      '@discordjs/opus': 0.9.0
+      '@discordjs/opus': 0.9.0(encoding@0.1.13)
+      ffmpeg-static: 5.2.0
 
   progress@2.0.3: {}
 
@@ -5445,8 +5688,6 @@ snapshots:
       is-extendable: 0.1.1
       is-plain-object: 2.0.4
       split-string: 3.1.0
-
-  setimmediate@1.0.5: {}
 
   shebang-command@1.2.0:
     dependencies:
@@ -5694,30 +5935,32 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  ts-jest@26.4.4(jest@26.6.1(canvas@2.11.2))(typescript@4.0.5):
+  ts-jest@26.4.4(jest@26.6.1(canvas@2.11.2(encoding@0.1.13)))(typescript@5.7.3):
     dependencies:
       '@types/jest': 26.0.15
       bs-logger: 0.2.6
       buffer-from: 1.1.2
       fast-json-stable-stringify: 2.1.0
-      jest: 26.6.1(canvas@2.11.2)
+      jest: 26.6.1(canvas@2.11.2(encoding@0.1.13))
       jest-util: 26.6.2
       json5: 2.2.3
       lodash.memoize: 4.1.2
       make-error: 1.3.6
       mkdirp: 1.0.4
       semver: 7.6.3
-      typescript: 4.0.5
+      typescript: 5.7.3
       yargs-parser: 20.2.9
+
+  ts-mixer@6.0.4: {}
 
   tslib@1.14.1: {}
 
-  tsutils@3.21.0(typescript@4.0.5):
+  tslib@2.8.1: {}
+
+  tsutils@3.21.0(typescript@5.7.3):
     dependencies:
       tslib: 1.14.1
-      typescript: 4.0.5
-
-  tweetnacl@1.0.3: {}
+      typescript: 5.7.3
 
   type-check@0.4.0:
     dependencies:
@@ -5735,9 +5978,16 @@ snapshots:
     dependencies:
       is-typedarray: 1.0.0
 
-  typescript@4.0.5: {}
+  typedarray@0.0.6:
+    optional: true
+
+  typescript@5.7.3: {}
 
   undefsafe@2.0.5: {}
+
+  undici-types@6.20.0: {}
+
+  undici@6.19.8: {}
 
   union-value@1.0.1:
     dependencies:
@@ -5895,6 +6145,8 @@ snapshots:
       mkdirp: 0.5.6
 
   ws@7.5.10: {}
+
+  ws@8.18.0: {}
 
   xdg-basedir@4.0.0: {}
 
